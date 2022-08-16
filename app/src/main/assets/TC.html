@@ -1,0 +1,1637 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <script>
+        if(navigator.userAgent.match(/MSIE|Internet Explorer/i)||navigator.userAgent.match(/Trident\/7\..*?rv:11/i)){var href=document.location.href;if(!href.match(/[?&]nowprocket/)){if(href.indexOf("?")==-1){if(href.indexOf("#")==-1){document.location.href=href+"?nowprocket=1"}else{document.location.href=href.replace("#","?nowprocket=1#")}}else{if(href.indexOf("#")==-1){document.location.href=href+"&nowprocket=1"}else{document.location.href=href.replace("#","&nowprocket=1#")}}}}
+
+
+    </script>
+    <script>
+        class RocketLazyLoadScripts{constructor(){this.triggerEvents=["keydown","mousedown","mousemove","touchmove","touchstart","touchend","wheel"],this.userEventHandler=this._triggerListener.bind(this),this.touchStartHandler=this._onTouchStart.bind(this),this.touchMoveHandler=this._onTouchMove.bind(this),this.touchEndHandler=this._onTouchEnd.bind(this),this.clickHandler=this._onClick.bind(this),this.interceptedClicks=[],window.addEventListener("pageshow",(e=>{this.persisted=e.persisted})),window.addEventListener("DOMContentLoaded",(()=>{this._preconnect3rdParties()})),this.delayedScripts={normal:[],async:[],defer:[]},this.allJQueries=[]}_addUserInteractionListener(e){document.hidden?e._triggerListener():(this.triggerEvents.forEach((t=>window.addEventListener(t,e.userEventHandler,{passive:!0}))),window.addEventListener("touchstart",e.touchStartHandler,{passive:!0}),window.addEventListener("mousedown",e.touchStartHandler),document.addEventListener("visibilitychange",e.userEventHandler))}_removeUserInteractionListener(){this.triggerEvents.forEach((e=>window.removeEventListener(e,this.userEventHandler,{passive:!0}))),document.removeEventListener("visibilitychange",this.userEventHandler)}_onTouchStart(e){"HTML"!==e.target.tagName&&(window.addEventListener("touchend",this.touchEndHandler),window.addEventListener("mouseup",this.touchEndHandler),window.addEventListener("touchmove",this.touchMoveHandler,{passive:!0}),window.addEventListener("mousemove",this.touchMoveHandler),e.target.addEventListener("click",this.clickHandler),this._renameDOMAttribute(e.target,"onclick","rocket-onclick"))}_onTouchMove(e){window.removeEventListener("touchend",this.touchEndHandler),window.removeEventListener("mouseup",this.touchEndHandler),window.removeEventListener("touchmove",this.touchMoveHandler,{passive:!0}),window.removeEventListener("mousemove",this.touchMoveHandler),e.target.removeEventListener("click",this.clickHandler),this._renameDOMAttribute(e.target,"rocket-onclick","onclick")}_onTouchEnd(e){window.removeEventListener("touchend",this.touchEndHandler),window.removeEventListener("mouseup",this.touchEndHandler),window.removeEventListener("touchmove",this.touchMoveHandler,{passive:!0}),window.removeEventListener("mousemove",this.touchMoveHandler)}_onClick(e){e.target.removeEventListener("click",this.clickHandler),this._renameDOMAttribute(e.target,"rocket-onclick","onclick"),this.interceptedClicks.push(e),e.preventDefault(),e.stopPropagation(),e.stopImmediatePropagation()}_replayClicks(){window.removeEventListener("touchstart",this.touchStartHandler,{passive:!0}),window.removeEventListener("mousedown",this.touchStartHandler),this.interceptedClicks.forEach((e=>{e.target.dispatchEvent(new MouseEvent("click",{view:e.view,bubbles:!0,cancelable:!0}))}))}_renameDOMAttribute(e,t,n){e.hasAttribute&&e.hasAttribute(t)&&(event.target.setAttribute(n,event.target.getAttribute(t)),event.target.removeAttribute(t))}_triggerListener(){this._removeUserInteractionListener(this),"loading"===document.readyState?document.addEventListener("DOMContentLoaded",this._loadEverythingNow.bind(this)):this._loadEverythingNow()}_preconnect3rdParties(){let e=[];document.querySelectorAll("script[type=rocketlazyloadscript]").forEach((t=>{if(t.hasAttribute("src")){const n=new URL(t.src).origin;n!==location.origin&&e.push({src:n,crossOrigin:t.crossOrigin||"module"===t.getAttribute("data-rocket-type")})}})),e=[...new Map(e.map((e=>[JSON.stringify(e),e]))).values()],this._batchInjectResourceHints(e,"preconnect")}async _loadEverythingNow(){this.lastBreath=Date.now(),this._delayEventListeners(),this._delayJQueryReady(this),this._handleDocumentWrite(),this._registerAllDelayedScripts(),this._preloadAllScripts(),await this._loadScriptsFromList(this.delayedScripts.normal),await this._loadScriptsFromList(this.delayedScripts.defer),await this._loadScriptsFromList(this.delayedScripts.async);try{await this._triggerDOMContentLoaded(),await this._triggerWindowLoad()}catch(e){}window.dispatchEvent(new Event("rocket-allScriptsLoaded")),this._replayClicks()}_registerAllDelayedScripts(){document.querySelectorAll("script[type=rocketlazyloadscript]").forEach((e=>{e.hasAttribute("src")?e.hasAttribute("async")&&!1!==e.async?this.delayedScripts.async.push(e):e.hasAttribute("defer")&&!1!==e.defer||"module"===e.getAttribute("data-rocket-type")?this.delayedScripts.defer.push(e):this.delayedScripts.normal.push(e):this.delayedScripts.normal.push(e)}))}async _transformScript(e){return await this._littleBreath(),new Promise((t=>{const n=document.createElement("script");[...e.attributes].forEach((e=>{let t=e.nodeName;"type"!==t&&("data-rocket-type"===t&&(t="type"),n.setAttribute(t,e.nodeValue))})),e.hasAttribute("src")?(n.addEventListener("load",t),n.addEventListener("error",t)):(n.text=e.text,t());try{e.parentNode.replaceChild(n,e)}catch(e){t()}}))}async _loadScriptsFromList(e){const t=e.shift();return t?(await this._transformScript(t),this._loadScriptsFromList(e)):Promise.resolve()}_preloadAllScripts(){this._batchInjectResourceHints([...this.delayedScripts.normal,...this.delayedScripts.defer,...this.delayedScripts.async],"preload")}_batchInjectResourceHints(e,t){var n=document.createDocumentFragment();e.forEach((e=>{if(e.src){const i=document.createElement("link");i.href=e.src,i.rel=t,"preconnect"!==t&&(i.as="script"),e.getAttribute&&"module"===e.getAttribute("data-rocket-type")&&(i.crossOrigin=!0),e.crossOrigin&&(i.crossOrigin=e.crossOrigin),n.appendChild(i)}})),document.head.appendChild(n)}_delayEventListeners(){let e={};function t(t,n){!function(t){function n(n){return e[t].eventsToRewrite.indexOf(n)>=0?"rocket-"+n:n}e[t]||(e[t]={originalFunctions:{add:t.addEventListener,remove:t.removeEventListener},eventsToRewrite:[]},t.addEventListener=function(){arguments[0]=n(arguments[0]),e[t].originalFunctions.add.apply(t,arguments)},t.removeEventListener=function(){arguments[0]=n(arguments[0]),e[t].originalFunctions.remove.apply(t,arguments)})}(t),e[t].eventsToRewrite.push(n)}function n(e,t){let n=e[t];Object.defineProperty(e,t,{get:()=>n||function(){},set(i){e["rocket"+t]=n=i}})}t(document,"DOMContentLoaded"),t(window,"DOMContentLoaded"),t(window,"load"),t(window,"pageshow"),t(document,"readystatechange"),n(document,"onreadystatechange"),n(window,"onload"),n(window,"onpageshow")}_delayJQueryReady(e){let t=window.jQuery;Object.defineProperty(window,"jQuery",{get:()=>t,set(n){if(n&&n.fn&&!e.allJQueries.includes(n)){n.fn.ready=n.fn.init.prototype.ready=function(t){e.domReadyFired?t.bind(document)(n):document.addEventListener("rocket-DOMContentLoaded",(()=>t.bind(document)(n)))};const t=n.fn.on;n.fn.on=n.fn.init.prototype.on=function(){if(this[0]===window){function e(e){return e.split(" ").map((e=>"load"===e||0===e.indexOf("load.")?"rocket-jquery-load":e)).join(" ")}"string"==typeof arguments[0]||arguments[0]instanceof String?arguments[0]=e(arguments[0]):"object"==typeof arguments[0]&&Object.keys(arguments[0]).forEach((t=>{delete Object.assign(arguments[0],{[e(t)]:arguments[0][t]})[t]}))}return t.apply(this,arguments),this},e.allJQueries.push(n)}t=n}})}async _triggerDOMContentLoaded(){this.domReadyFired=!0,await this._littleBreath(),document.dispatchEvent(new Event("rocket-DOMContentLoaded")),await this._littleBreath(),window.dispatchEvent(new Event("rocket-DOMContentLoaded")),await this._littleBreath(),document.dispatchEvent(new Event("rocket-readystatechange")),await this._littleBreath(),document.rocketonreadystatechange&&document.rocketonreadystatechange()}async _triggerWindowLoad(){await this._littleBreath(),window.dispatchEvent(new Event("rocket-load")),await this._littleBreath(),window.rocketonload&&window.rocketonload(),await this._littleBreath(),this.allJQueries.forEach((e=>e(window).trigger("rocket-jquery-load"))),await this._littleBreath();const e=new Event("rocket-pageshow");e.persisted=this.persisted,window.dispatchEvent(e),await this._littleBreath(),window.rocketonpageshow&&window.rocketonpageshow({persisted:this.persisted})}_handleDocumentWrite(){const e=new Map;document.write=document.writeln=function(t){const n=document.currentScript,i=document.createRange(),r=n.parentElement;let o=e.get(n);void 0===o&&(o=n.nextSibling,e.set(n,o));const s=document.createDocumentFragment();i.setStart(s,0),s.appendChild(i.createContextualFragment(t)),r.insertBefore(s,o)}}async _littleBreath(){Date.now()-this.lastBreath>45&&(await this._requestAnimFrame(),this.lastBreath=Date.now())}async _requestAnimFrame(){return document.hidden?new Promise((e=>setTimeout(e))):new Promise((e=>requestAnimationFrame(e)))}static run(){const e=new RocketLazyLoadScripts;e._addUserInteractionListener(e)}}RocketLazyLoadScripts.run();
+
+
+    </script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="profile" href="https://gmpg.org/xfn/11">
+    <meta name='robots' content='noindex, nofollow'/>
+    <link rel="alternate" hreflang="en" href="https://lotterytexts.com/terms-and-conditions/"/>
+    <link rel="alternate" hreflang="es" href="https://lotterytexts.com/es/terms-and-conditions/"/>
+    <link rel="alternate" hreflang="de" href="https://lotterytexts.com/de/terms-and-conditions/"/>
+    <link rel="alternate" hreflang="fr" href="https://lotterytexts.com/fr/terms-and-conditions/"/>
+    <link rel="alternate" hreflang="ru" href="https://lotterytexts.com/ru/terms-and-conditions/"/>
+    <link rel="alternate" hreflang="pt" href="https://lotterytexts.com/pt/terms-and-conditions/"/>
+    <link rel="alternate" hreflang="it" href="https://lotterytexts.com/it/terms-and-conditions/"/>
+    <link rel="alternate" hreflang="pl" href="https://lotterytexts.com/pl/terms-and-conditions/"/>
+    <link rel="alternate" hreflang="hi" href="https://lotterytexts.com/hi/terms-and-conditions/"/>
+    <link rel="alternate" hreflang="nl" href="https://lotterytexts.com/nl/terms-and-conditions/"/>
+    <link rel="alternate" hreflang="ko" href="https://lotterytexts.com/ko/terms-and-conditions/"/>
+    <link rel="alternate" hreflang="ja" href="https://lotterytexts.com/ja/terms-and-conditions/"/>
+    <link rel="alternate" hreflang="zh-CN"
+          href="https://lotterytexts.com/zh-CN/terms-and-conditions/"/>
+
+    <!-- This site is optimized with the Yoast SEO plugin v18.9 - https://yoast.com/wordpress/plugins/seo/ -->
+    <title>Terms and Conditions</title>
+    <link rel="preload" as="style"
+          href="https://fonts.googleapis.com/css?family=Open%20Sans%3A100%2C100italic%2C200%2C200italic%2C300%2C300italic%2C400%2C400italic%2C500%2C500italic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic%2C900%2C900italic&#038;display=swap"/>
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Open%20Sans%3A100%2C100italic%2C200%2C200italic%2C300%2C300italic%2C400%2C400italic%2C500%2C500italic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic%2C900%2C900italic&#038;display=swap"
+          media="print" onload="this.media='all'"/>
+    <noscript>
+        <link rel="stylesheet"
+              href="https://fonts.googleapis.com/css?family=Open%20Sans%3A100%2C100italic%2C200%2C200italic%2C300%2C300italic%2C400%2C400italic%2C500%2C500italic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic%2C900%2C900italic&#038;display=swap"/>
+    </noscript>
+    <link rel="stylesheet"
+          href="https://lotterytexts.com/wp-content/cache/min/1/41cb654fbd69e2beef94fc2cb979ad4f.css"
+          media="all" data-minify="1"/>
+    <meta name="description"
+          content="These terms and conditions outline the rules and regulations for the use of LotteryTexts&#039;s website."/>
+    <meta property="og:locale" content="en_US"/>
+    <meta property="og:type" content="article"/>
+    <meta property="og:title" content="Terms and Conditions"/>
+    <meta property="og:description"
+          content="These terms and conditions outline the rules and regulations for the use of LotteryTexts&#039;s website."/>
+    <meta property="og:url" content="https://lotterytexts.com/terms-and-conditions/"/>
+    <meta property="og:site_name" content="LotteryTexts"/>
+    <meta property="article:publisher" content="https://www.facebook.com/lotterytextscom"/>
+    <meta property="article:modified_time" content="2021-04-10T17:59:31+00:00"/>
+    <meta property="og:image"
+          content="https://lotterytexts.com/wp-content/uploads/2021/04/Your-Online-Source-for-Worldwide-Lottery-Results.png"/>
+    <meta property="og:image:width" content="1200"/>
+    <meta property="og:image:height" content="630"/>
+    <meta property="og:image:type" content="image/png"/>
+    <meta name="twitter:card" content="summary_large_image"/>
+    <meta name="twitter:site" content="@TextsLottery"/>
+    <meta name="twitter:label1" content="Est. reading time"/>
+    <meta name="twitter:data1" content="7 minutes"/>
+    <!-- / Yoast SEO plugin. -->
+
+
+    <link href='https://fonts.gstatic.com' crossorigin rel='preconnect'/>
+    <link rel="alternate" type="application/rss+xml" title="LotteryTexts &raquo; Feed"
+          href="https://lotterytexts.com/feed/"/>
+    <link rel="alternate" type="application/rss+xml" title="LotteryTexts &raquo; Comments Feed"
+          href="https://lotterytexts.com/comments/feed/"/>
+    <style>
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 0.07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+
+
+
+    </style>
+
+
+    <style id='astra-theme-css-inline-css'>
+html{font-size:93.75%;}a,.page-title{color:#0274be;}a:hover,a:focus{color:#3a3a3a;}body,button,input,select,textarea,.ast-button,.ast-custom-button{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif;font-weight:inherit;font-size:15px;font-size:1rem;}blockquote{color:#000000;}.site-title{font-size:35px;font-size:2.3333333333333rem;}header .custom-logo-link img{max-width:200px;}.astra-logo-svg{width:200px;}.ast-archive-description .ast-archive-title{font-size:40px;font-size:2.6666666666667rem;}.site-header .site-description{font-size:15px;font-size:1rem;}.entry-title{font-size:30px;font-size:2rem;}h1,.entry-content h1{font-size:40px;font-size:2.6666666666667rem;}h2,.entry-content h2{font-size:30px;font-size:2rem;}h3,.entry-content h3{font-size:25px;font-size:1.6666666666667rem;}h4,.entry-content h4{font-size:20px;font-size:1.3333333333333rem;}h5,.entry-content h5{font-size:18px;font-size:1.2rem;}h6,.entry-content h6{font-size:15px;font-size:1rem;}.ast-single-post .entry-title,.page-title{font-size:30px;font-size:2rem;}::selection{background-color:#0274be;color:#ffffff;}body,h1,.entry-title a,.entry-content h1,h2,.entry-content h2,h3,.entry-content h3,h4,.entry-content h4,h5,.entry-content h5,h6,.entry-content h6{color:#3a3a3a;}.tagcloud a:hover,.tagcloud a:focus,.tagcloud a.current-item{color:#ffffff;border-color:#0274be;background-color:#0274be;}input:focus,input[type="text"]:focus,input[type="email"]:focus,input[type="url"]:focus,input[type="password"]:focus,input[type="reset"]:focus,input[type="search"]:focus,textarea:focus{border-color:#0274be;}input[type="radio"]:checked,input[type=reset],input[type="checkbox"]:checked,input[type="checkbox"]:hover:checked,input[type="checkbox"]:focus:checked,input[type=range]::-webkit-slider-thumb{border-color:#0274be;background-color:#0274be;box-shadow:none;}.site-footer a:hover + .post-count,.site-footer a:focus + .post-count{background:#0274be;border-color:#0274be;}.single .nav-links .nav-previous,.single .nav-links .nav-next{color:#0274be;}.entry-meta,.entry-meta *{line-height:1.45;color:#0274be;}.entry-meta a:hover,.entry-meta a:hover *,.entry-meta a:focus,.entry-meta a:focus *,.page-links > .page-link,.page-links .page-link:hover,.post-navigation a:hover{color:#3a3a3a;}.widget-title{font-size:21px;font-size:1.4rem;color:#3a3a3a;}#cat option,.secondary .calendar_wrap thead a,.secondary .calendar_wrap thead a:visited{color:#0274be;}.secondary .calendar_wrap #today,.ast-progress-val span{background:#0274be;}.secondary a:hover + .post-count,.secondary a:focus + .post-count{background:#0274be;border-color:#0274be;}.calendar_wrap #today > a{color:#ffffff;}.page-links .page-link,.single .post-navigation a{color:#0274be;}.main-header-menu .menu-link,.ast-header-custom-item a{color:#3a3a3a;}.main-header-menu .menu-item:hover > .menu-link,.main-header-menu .menu-item:hover > .ast-menu-toggle,.main-header-menu .ast-masthead-custom-menu-items a:hover,.main-header-menu .menu-item.focus > .menu-link,.main-header-menu .menu-item.focus > .ast-menu-toggle,.main-header-menu .current-menu-item > .menu-link,.main-header-menu .current-menu-ancestor > .menu-link,.main-header-menu .current-menu-item > .ast-menu-toggle,.main-header-menu .current-menu-ancestor > .ast-menu-toggle{color:#0274be;}.ast-header-break-point .ast-mobile-menu-buttons-minimal.menu-toggle{background:transparent;color:#0274be;}.ast-header-break-point .ast-mobile-menu-buttons-outline.menu-toggle{background:transparent;border:1px solid #0274be;color:#0274be;}.ast-header-break-point .ast-mobile-menu-buttons-fill.menu-toggle{background:#0274be;}.footer-adv .footer-adv-overlay{border-top-style:solid;border-top-color:#7a7a7a;}.wp-block-buttons.aligncenter{justify-content:center;}@media (min-width:1200px){.wp-block-group .has-background{padding:20px;}}@media (max-width:921px){.ast-separate-container .ast-article-post,.ast-separate-container .ast-article-single{padding:1.5em 2.14em;}.ast-separate-container #primary,.ast-separate-container #secondary{padding:1.5em 0;}#primary,#secondary{padding:1.5em 0;margin:0;}.ast-left-sidebar #content > .ast-container{display:flex;flex-direction:column-reverse;width:100%;}.ast-author-box img.avatar{margin:20px 0 0 0;}}@media (max-width:921px){.ast-right-sidebar #primary{padding-right:0;}}@media (min-width:922px){.ast-separate-container.ast-right-sidebar #primary,.ast-separate-container.ast-left-sidebar #primary{border:0;}.search-no-results.ast-separate-container #primary{margin-bottom:4em;}}@media (min-width:922px){.ast-right-sidebar #primary{border-right:1px solid #eee;}.ast-left-sidebar #primary{border-left:1px solid #eee;}}.wp-block-button .wp-block-button__link,{color:#ffffff;}.wp-block-button .wp-block-button__link{border-style:solid;border-top-width:0;border-right-width:0;border-left-width:0;border-bottom-width:0;border-color:#0274be;background-color:#0274be;color:#ffffff;font-family:inherit;font-weight:inherit;line-height:1;border-radius:2px;padding-top:10px;padding-right:40px;padding-bottom:10px;padding-left:40px;}.wp-block-button .wp-block-button__link:hover,.wp-block-button .wp-block-button__link:focus{color:#ffffff;background-color:#3a3a3a;border-color:#3a3a3a;}.menu-toggle,button,.ast-button,.ast-custom-button,.button,input#submit,input[type="button"],input[type="submit"],input[type="reset"]{border-style:solid;border-top-width:0;border-right-width:0;border-left-width:0;border-bottom-width:0;color:#ffffff;border-color:#0274be;background-color:#0274be;border-radius:2px;padding-top:10px;padding-right:40px;padding-bottom:10px;padding-left:40px;font-family:inherit;font-weight:inherit;line-height:1;}button:focus,.menu-toggle:hover,button:hover,.ast-button:hover,.ast-custom-button:hover .button:hover,.ast-custom-button:hover ,input[type=reset]:hover,input[type=reset]:focus,input#submit:hover,input#submit:focus,input[type="button"]:hover,input[type="button"]:focus,input[type="submit"]:hover,input[type="submit"]:focus{color:#ffffff;background-color:#3a3a3a;border-color:#3a3a3a;}@media (min-width:921px){.ast-container{max-width:100%;}}@media (min-width:544px){.ast-container{max-width:100%;}}@media (max-width:544px){.ast-separate-container .ast-article-post,.ast-separate-container .ast-article-single{padding:1.5em 1em;}.ast-separate-container #content .ast-container{padding-left:0.54em;padding-right:0.54em;}.ast-separate-container .ast-archive-description{padding:1.5em 1em;}.ast-search-menu-icon.ast-dropdown-active .search-field{width:170px;}}@media (max-width:921px){.ast-mobile-header-stack .main-header-bar .ast-search-menu-icon{display:inline-block;}.ast-header-break-point.ast-header-custom-item-outside .ast-mobile-header-stack .main-header-bar .ast-search-icon{margin:0;}}@media (min-width:545px){.ast-page-builder-template .comments-area,.single.ast-page-builder-template .entry-header,.single.ast-page-builder-template .post-navigation{max-width:1240px;margin-left:auto;margin-right:auto;}}@media (max-width:921px){.ast-archive-description .ast-archive-title{font-size:40px;}.entry-title{font-size:30px;}h1,.entry-content h1{font-size:30px;}h2,.entry-content h2{font-size:25px;}h3,.entry-content h3{font-size:20px;}.ast-single-post .entry-title,.page-title{font-size:30px;}.astra-logo-svg{width:200px;}header .custom-logo-link img,.ast-header-break-point .site-logo-img .custom-mobile-logo-link img{max-width:200px;}}@media (max-width:544px){.ast-archive-description .ast-archive-title{font-size:40px;}.entry-title{font-size:30px;}h1,.entry-content h1{font-size:30px;}h2,.entry-content h2{font-size:25px;}h3,.entry-content h3{font-size:20px;}.ast-single-post .entry-title,.page-title{font-size:30px;}}@media (max-width:921px){html{font-size:85.5%;}}@media (max-width:544px){html{font-size:85.5%;}}@media (min-width:922px){.ast-container{max-width:1240px;}}@font-face {font-family: "Astra";src: url(https://lotterytexts.com/wp-content/themes/astra/assets/fonts/astra.woff) format("woff"),url(https://lotterytexts.com/wp-content/themes/astra/assets/fonts/astra.ttf) format("truetype"),url(https://lotterytexts.com/wp-content/themes/astra/assets/fonts/astra.svg#astra) format("svg");font-weight: normal;font-style: normal;font-display: fallback;}@media (max-width:921px) {.main-header-bar .main-header-bar-navigation{display:none;}}.ast-desktop .main-header-menu.submenu-with-border .sub-menu,.ast-desktop .main-header-menu.submenu-with-border .astra-full-megamenu-wrapper{border-color:#0274be;}.ast-desktop .main-header-menu.submenu-with-border .sub-menu{border-top-width:2px;border-right-width:0px;border-left-width:0px;border-bottom-width:0px;border-style:solid;}.ast-desktop .main-header-menu.submenu-with-border .sub-menu .sub-menu{top:-2px;}.ast-desktop .main-header-menu.submenu-with-border .sub-menu .menu-link,.ast-desktop .main-header-menu.submenu-with-border .children .menu-link{border-bottom-width:0px;border-style:solid;border-color:#eaeaea;}@media (min-width:922px){.main-header-menu .sub-menu .menu-item.ast-left-align-sub-menu:hover > .sub-menu,.main-header-menu .sub-menu .menu-item.ast-left-align-sub-menu.focus > .sub-menu{margin-left:-0px;}}.ast-small-footer{border-top-style:solid;border-top-width:1px;border-top-color:#7a7a7a;}.ast-small-footer-wrap{text-align:center;}.ast-breadcrumbs .trail-browse,.ast-breadcrumbs .trail-items,.ast-breadcrumbs .trail-items li{display:inline-block;margin:0;padding:0;border:none;background:inherit;text-indent:0;}.ast-breadcrumbs .trail-browse{font-size:inherit;font-style:inherit;font-weight:inherit;color:inherit;}.ast-breadcrumbs .trail-items{list-style:none;}.trail-items li::after{padding:0 0.3em;content:"\00bb";}.trail-items li:last-of-type::after{display:none;}.elementor-widget-heading .elementor-heading-title{margin:0;}.elementor-post.elementor-grid-item.hentry{margin-bottom:0;}.woocommerce div.product .elementor-element.elementor-products-grid .related.products ul.products li.product,.elementor-element .elementor-wc-products .woocommerce[class*='columns-'] ul.products li.product{width:auto;margin:0;float:none;}.ast-left-sidebar .elementor-section.elementor-section-stretched,.ast-right-sidebar .elementor-section.elementor-section-stretched{max-width:100%;left:0 !important;}.ast-header-break-point .main-header-bar{border-bottom-width:1px;}@media (min-width:922px){.main-header-bar{border-bottom-width:1px;}}.ast-safari-browser-less-than-11 .main-header-menu .menu-item, .ast-safari-browser-less-than-11 .main-header-bar .ast-masthead-custom-menu-items{display:block;}.main-header-menu .menu-item, .main-header-bar .ast-masthead-custom-menu-items{-js-display:flex;display:flex;-webkit-box-pack:center;-webkit-justify-content:center;-moz-box-pack:center;-ms-flex-pack:center;justify-content:center;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column;}.main-header-menu > .menu-item > .menu-link{height:100%;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;-js-display:flex;display:flex;}.ast-primary-menu-disabled .main-header-bar .ast-masthead-custom-menu-items{flex:unset;}
+
+
+
+    </style>
+
+
+    <style id='global-styles-inline-css'>
+body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #ffffff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgba(6,147,227,1) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgba(252,185,0,1) 0%,rgba(255,105,0,1) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgba(255,105,0,1) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--duotone--dark-grayscale: url('#wp-duotone-dark-grayscale');--wp--preset--duotone--grayscale: url('#wp-duotone-grayscale');--wp--preset--duotone--purple-yellow: url('#wp-duotone-purple-yellow');--wp--preset--duotone--blue-red: url('#wp-duotone-blue-red');--wp--preset--duotone--midnight: url('#wp-duotone-midnight');--wp--preset--duotone--magenta-yellow: url('#wp-duotone-magenta-yellow');--wp--preset--duotone--purple-green: url('#wp-duotone-purple-green');--wp--preset--duotone--blue-orange: url('#wp-duotone-blue-orange');--wp--preset--font-size--small: 13px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 36px;--wp--preset--font-size--x-large: 42px;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-x-large-font-size{font-size: var(--wp--preset--font-size--x-large) !important;}
+
+
+
+    </style>
+
+
+    <link rel='stylesheet' id='elementor-post-9-css'
+          href='https://lotterytexts.com/wp-content/uploads/elementor/css/post-9.css?ver=1655630669'
+          media='all'/>
+
+    <link rel='stylesheet' id='elementor-global-css'
+          href='https://lotterytexts.com/wp-content/uploads/elementor/css/global.css?ver=1655630670'
+          media='all'/>
+    <link rel='stylesheet' id='elementor-post-8451-css'
+          href='https://lotterytexts.com/wp-content/uploads/elementor/css/post-8451.css?ver=1655631917'
+          media='all'/>
+    <link rel='stylesheet' id='elementor-post-1025-css'
+          href='https://lotterytexts.com/wp-content/uploads/elementor/css/post-1025.css?ver=1655630670'
+          media='all'/>
+    <link rel='stylesheet' id='elementor-post-4218-css'
+          href='https://lotterytexts.com/wp-content/uploads/elementor/css/post-4218.css?ver=1655630921'
+          media='all'/>
+    <link rel='stylesheet' id='elementor-post-9901-css'
+          href='https://lotterytexts.com/wp-content/uploads/elementor/css/post-9901.css?ver=1655630671'
+          media='all'/>
+
+
+    <style id='rocket-lazyload-inline-css'>
+.rll-youtube-player{position:relative;padding-bottom:56.23%;height:0;overflow:hidden;max-width:100%;}.rll-youtube-player:focus-within{outline: 2px solid currentColor;outline-offset: 5px;}.rll-youtube-player iframe{position:absolute;top:0;left:0;width:100%;height:100%;z-index:100;background:0 0}.rll-youtube-player img{bottom:0;display:block;left:0;margin:auto;max-width:100%;width:100%;position:absolute;right:0;top:0;border:none;height:auto;-webkit-transition:.4s all;-moz-transition:.4s all;transition:.4s all}.rll-youtube-player img:hover{-webkit-filter:brightness(75%)}.rll-youtube-player .play{height:100%;width:100%;left:0;top:0;position:absolute;background:url(https://lotterytexts.com/wp-content/plugins/wp-rocket/assets/img/youtube.png) no-repeat center;background-color: transparent !important;cursor:pointer;border:none;}
+
+
+
+    </style>
+
+
+    <script type="rocketlazyloadscript"
+            src='https://lotterytexts.com/wp-includes/js/jquery/jquery.min.js?ver=3.6.0'
+            id='jquery-core-js'></script>
+    <script type="rocketlazyloadscript"
+            src='https://lotterytexts.com/wp-includes/js/jquery/jquery-migrate.min.js?ver=3.3.2'
+            id='jquery-migrate-js'></script>
+    <!--[if IE]>
+    <script src='https://lotterytexts.com/wp-content/themes/astra/assets/js/minified/flexibility.min.js?ver=3.1.2'
+            id='astra-flexibility-js'></script>
+    <script id='astra-flexibility-js-after'>
+flexibility(document.documentElement);
+
+
+    </script>
+    <![endif]-->
+    <link rel="https://api.w.org/" href="https://lotterytexts.com/wp-json/"/>
+    <link rel="alternate" type="application/json"
+          href="https://lotterytexts.com/wp-json/wp/v2/pages/8451"/>
+    <link rel="EditURI" type="application/rsd+xml" title="RSD"
+          href="https://lotterytexts.com/xmlrpc.php?rsd"/>
+    <link rel="wlwmanifest" type="application/wlwmanifest+xml"
+          href="https://lotterytexts.com/wp-includes/wlwmanifest.xml"/>
+    <meta name="generator" content="WordPress 6.0"/>
+    <link rel='shortlink' href='https://lotterytexts.com/?p=8451'/>
+    <link rel="alternate" type="application/json+oembed"
+          href="https://lotterytexts.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Flotterytexts.com%2Fterms-and-conditions%2F"/>
+    <link rel="alternate" type="text/xml+oembed"
+          href="https://lotterytexts.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Flotterytexts.com%2Fterms-and-conditions%2F&#038;format=xml"/>
+
+    <!-- This site is using AdRotate v5.8.25 to display their advertisements - https://ajdg.solutions/ -->
+    <!-- AdRotate CSS -->
+    <style type="text/css" media="screen">
+	.g { margin:0px; padding:0px; overflow:hidden; line-height:1; zoom:1; }
+	.g img { height:auto; }
+	.g-col { position:relative; float:left; }
+	.g-col:first-child { margin-left: 0; }
+	.g-col:last-child { margin-right: 0; }
+	.g-1 {  margin: 0 auto; }
+	.g-2 {  margin: 0 auto; }
+	@media only screen and (max-width: 480px) {
+		.g-col, .g-dyn, .g-single { width:100%; margin-left:0; margin-right:0; }
+	}
+
+
+
+    </style>
+    <!-- /AdRotate CSS -->
+
+    <script type="rocketlazyloadscript">var gt_request_uri = '/terms-and-conditions/';</script>
+    <!-- Schema & Structured Data For WP v1.9.97 - -->
+    <script type="application/ld+json" class="saswp-schema-markup-output">
+        [
+            {
+                "@context": "https://schema.org",
+                "@graph": [
+                    {
+                        "@context": "https://schema.org",
+                        "@type": "SiteNavigationElement",
+                        "@id": "https://lotterytexts.com/#Main",
+                        "name": "Popular",
+                        "url": "#"
+                    },
+                    {
+                        "@context": "https://schema.org",
+                        "@type": "SiteNavigationElement",
+                        "@id": "https://lotterytexts.com/#Main",
+                        "name": "Powerball",
+                        "url": "https://lotterytexts.com/multi-states/powerball/"
+                    },
+                    {
+                        "@context": "https://schema.org",
+                        "@type": "SiteNavigationElement",
+                        "@id": "https://lotterytexts.com/#Main",
+                        "name": "Mega Millions",
+                        "url": "https://lotterytexts.com/multi-states/mega-millions/"
+                    },
+                    {
+                        "@context": "https://schema.org",
+                        "@type": "SiteNavigationElement",
+                        "@id": "https://lotterytexts.com/#Main",
+                        "name": "EuroMillions",
+                        "url": "https://lotterytexts.com/nationwide/euromillions/"
+                    },
+                    {
+                        "@context": "https://schema.org",
+                        "@type": "SiteNavigationElement",
+                        "@id": "https://lotterytexts.com/#Main",
+                        "name": "Eurojackpot",
+                        "url": "https://lotterytexts.com/nationwide/eurojackpot/"
+                    },
+                    {
+                        "@context": "https://schema.org",
+                        "@type": "SiteNavigationElement",
+                        "@id": "https://lotterytexts.com/#Main",
+                        "name": "Vikinglotto",
+                        "url": "https://lotterytexts.com/nationwide/vikinglotto/"
+                    },
+                    {
+                        "@context": "https://schema.org",
+                        "@type": "SiteNavigationElement",
+                        "@id": "https://lotterytexts.com/#Main",
+                        "name": "El Gordo",
+                        "url": "https://lotterytexts.com/spain/el-gordo/"
+                    },
+                    {
+                        "@context": "https://schema.org",
+                        "@type": "SiteNavigationElement",
+                        "@id": "https://lotterytexts.com/#Main",
+                        "name": "SuperEnalotto",
+                        "url": "https://lotterytexts.com/italy/superenalotto/"
+                    },
+                    {
+                        "@context": "https://schema.org",
+                        "@type": "SiteNavigationElement",
+                        "@id": "https://lotterytexts.com/#Main",
+                        "name": "World Lotteries",
+                        "url": "https://lotterytexts.com/lottery-results-by-country/"
+                    },
+                    {
+                        "@context": "https://schema.org",
+                        "@type": "SiteNavigationElement",
+                        "@id": "https://lotterytexts.com/#Main",
+                        "name": "States",
+                        "url": "#"
+                    },
+                    {
+                        "@context": "https://schema.org",
+                        "@type": "SiteNavigationElement",
+                        "@id": "https://lotterytexts.com/#Main",
+                        "name": "AZ Arizona",
+                        "url": "https://lotterytexts.com/arizona/"
+                    },
+                    {
+                        "@context": "https://schema.org",
+                        "@type": "SiteNavigationElement",
+                        "@id": "https://lotterytexts.com/#Main",
+                        "name": "AR Arkansas",
+                        "url": "https://lotterytexts.com/arkansas/"
+                    },
+                    {
+                        "@context": "https://schema.org",
+                        "@type": "SiteNavigationElement",
+                        "@id": "https://lotterytexts.com/#Main",
+                        "name": "CA California",
+                        "url": "https://lotterytexts.com/california/"
+                    },
+                    {
+                        "@context": "https://schema.org",
+                        "@type": "SiteNavigationElement",
+                        "@id": "https://lotterytexts.com/#Main",
+                        "name": "CO Colorado",
+                        "url": "https://lotterytexts.com/colorado/"
+                    },
+                    {
+                        "@context": "https://schema.org",
+                        "@type": "SiteNavigationElement",
+                        "@id": "https://lotterytexts.com/#Main",
+                        "name": "CT Connecticut",
+                        "url": "https://lotterytexts.com/connecticut/"
+                    },
+                    {
+                        "@context": "https://schema.org",
+                        "@type": "SiteNavigationElement",
+                        "@id": "https://lotterytexts.com/#Main",
+                        "name": "DE Delaware",
+                        "url": "https://lotterytexts.com/delaware/"
+                    },
+                    {
+                        "@context": "https://schema.org",
+                        "@type": "SiteNavigationElement",
+                        "@id": "https://lotterytexts.com/#Main",
+                        "name": "DC District of Columbia",
+                        "url": "https://lotterytexts.com/district-of-columbia/"
+                    },
+                    {
+                        "@context": "https://schema.org",
+                        "@type": "SiteNavigationElement",
+                        "@id": "https://lotterytexts.com/#Main",
+                        "name": "FL Florida",
+                        "url": "https://lotterytexts.com/florida/"
+                    },
+                    {
+                        "@context": "https://schema.org",
+                        "@type": "SiteNavigationElement",
+                        "@id": "https://lotterytexts.com/#Main",
+                        "name": "GA Georgia",
+                        "url": "https://lotterytexts.com/georgia/"
+                    },
+                    {
+                        "@context": "https://schema.org",
+                        "@type": "SiteNavigationElement",
+                        "@id": "https://lotterytexts.com/#Main",
+                        "name": "ID Idaho",
+                        "url": "https://lotterytexts.com/idaho/"
+                    },
+                    {
+                        "@context": "https://schema.org",
+                        "@type": "SiteNavigationElement",
+                        "@id": "https://lotterytexts.com/#Main",
+                        "name": "IL Illinois",
+                        "url": "https://lotterytexts.com/illinois/"
+                    },
+                    {
+                        "@context": "https://schema.org",
+                        "@type": "SiteNavigationElement",
+                        "@id": "https://lotterytexts.com/#Main",
+                        "name": "IN Indiana",
+                        "url": "https://lotterytexts.com/indiana/"
+                    },
+                    {
+                        "@context": "https://schema.org",
+                        "@type": "SiteNavigationElement",
+                        "@id": "https://lotterytexts.com/#Main",
+                        "name": "IA Iowa",
+                        "url": "https://lotterytexts.com/iowa/"
+                    },
+                    {
+                        "@context": "https://schema.org",
+                        "@type": "SiteNavigationElement",
+                        "@id": "https://lotterytexts.com/#Main",
+                        "name": "KS Kansas",
+                        "url": "https://lotterytexts.com/kansas/"
+                    },
+                    {
+                        "@context": "https://schema.org",
+                        "@type": "SiteNavigationElement",
+                        "@id": "https://lotterytexts.com/#Main",
+                        "name": "KY Kentucky",
+                        "url": "https://lotterytexts.com/kentucky/"
+                    },
+                    {
+                        "@context": "https://schema.org",
+                        "@type": "SiteNavigationElement",
+                        "@id": "https://lotterytexts.com/#Main",
+                        "name": "LA Louisiana",
+                        "url": "https://lotterytexts.com/louisiana/"
+                    },
+                    {
+                        "@context": "https://schema.org",
+                        "@type": "SiteNavigationElement",
+                        "@id": "https://lotterytexts.com/#Main",
+                        "name": "ME Maine",
+                        "url": "https://lotterytexts.com/maine/"
+                    },
+                    {
+                        "@context": "https://schema.org",
+                        "@type": "SiteNavigationElement",
+                        "@id": "https://lotterytexts.com/#Main",
+                        "name": "MD Maryland",
+                        "url": "https://lotterytexts.com/maryland/"
+                    },
+                    {
+                        "@context": "https://schema.org",
+                        "@type": "SiteNavigationElement",
+                        "@id": "https://lotterytexts.com/#Main",
+                        "name": "MA Massachusetts",
+                        "url": "https://lotterytexts.com/massachusetts/"
+                    },
+                    {
+                        "@context": "https://schema.org",
+                        "@type": "SiteNavigationElement",
+                        "@id": "https://lotterytexts.com/#Main",
+                        "name": "MI Michigan",
+                        "url": "https://lotterytexts.com/michigan/"
+                    },
+                    {
+                        "@context": "https://schema.org",
+                        "@type": "SiteNavigationElement",
+                        "@id": "https://lotterytexts.com/#Main",
+                        "name": "MN Minnesota",
+                        "url": "https://lotterytexts.com/minnesota/"
+                    },
+                    {
+                        "@context": "https://schema.org",
+                        "@type": "SiteNavigationElement",
+                        "@id": "https://lotterytexts.com/#Main",
+                        "name": "MS Mississippi",
+                        "url": "https://lotterytexts.com/mississippi/"
+                    },
+                    {
+                        "@context": "https://schema.org",
+                        "@type": "SiteNavigationElement",
+                        "@id": "https://lotterytexts.com/#Main",
+                        "name": "MO Missouri",
+                        "url": "https://lotterytexts.com/missouri/"
+                    },
+                    {
+                        "@context": "https://schema.org",
+                        "@type": "SiteNavigationElement",
+                        "@id": "https://lotterytexts.com/#Main",
+                        "name": "MT Montana",
+                        "url": "https://lotterytexts.com/montana/"
+                    },
+                    {
+                        "@context": "https://schema.org",
+                        "@type": "SiteNavigationElement",
+                        "@id": "https://lotterytexts.com/#Main",
+                        "name": "NE Nebraska",
+                        "url": "https://lotterytexts.com/nebraska/"
+                    },
+                    {
+                        "@context": "https://schema.org",
+                        "@type": "SiteNavigationElement",
+                        "@id": "https://lotterytexts.com/#Main",
+                        "name": "NH New Hampshire",
+                        "url": "https://lotterytexts.com/new-hampshire/"
+                    },
+                    {
+                        "@context": "https://schema.org",
+                        "@type": "SiteNavigationElement",
+                        "@id": "https://lotterytexts.com/#Main",
+                        "name": "NJ New Jersey",
+                        "url": "https://lotterytexts.com/new-jersey/"
+                    },
+                    {
+                        "@context": "https://schema.org",
+                        "@type": "SiteNavigationElement",
+                        "@id": "https://lotterytexts.com/#Main",
+                        "name": "NM New Mexico",
+                        "url": "https://lotterytexts.com/new-mexico/"
+                    },
+                    {
+                        "@context": "https://schema.org",
+                        "@type": "SiteNavigationElement",
+                        "@id": "https://lotterytexts.com/#Main",
+                        "name": "NY New York",
+                        "url": "https://lotterytexts.com/new-york/"
+                    },
+                    {
+                        "@context": "https://schema.org",
+                        "@type": "SiteNavigationElement",
+                        "@id": "https://lotterytexts.com/#Main",
+                        "name": "NC North Carolina",
+                        "url": "https://lotterytexts.com/north-carolina/"
+                    },
+                    {
+                        "@context": "https://schema.org",
+                        "@type": "SiteNavigationElement",
+                        "@id": "https://lotterytexts.com/#Main",
+                        "name": "ND North Dakota",
+                        "url": "https://lotterytexts.com/north-dakota/"
+                    },
+                    {
+                        "@context": "https://schema.org",
+                        "@type": "SiteNavigationElement",
+                        "@id": "https://lotterytexts.com/#Main",
+                        "name": "OH Ohio",
+                        "url": "https://lotterytexts.com/ohio/"
+                    },
+                    {
+                        "@context": "https://schema.org",
+                        "@type": "SiteNavigationElement",
+                        "@id": "https://lotterytexts.com/#Main",
+                        "name": "OK Oklahoma",
+                        "url": "https://lotterytexts.com/oklahoma/"
+                    },
+                    {
+                        "@context": "https://schema.org",
+                        "@type": "SiteNavigationElement",
+                        "@id": "https://lotterytexts.com/#Main",
+                        "name": "OR Oregon",
+                        "url": "https://lotterytexts.com/oregon/"
+                    },
+                    {
+                        "@context": "https://schema.org",
+                        "@type": "SiteNavigationElement",
+                        "@id": "https://lotterytexts.com/#Main",
+                        "name": "PA Pennsylvania",
+                        "url": "https://lotterytexts.com/pennsylvania/"
+                    },
+                    {
+                        "@context": "https://schema.org",
+                        "@type": "SiteNavigationElement",
+                        "@id": "https://lotterytexts.com/#Main",
+                        "name": "RI Rhode Island",
+                        "url": "https://lotterytexts.com/rhode-island/"
+                    },
+                    {
+                        "@context": "https://schema.org",
+                        "@type": "SiteNavigationElement",
+                        "@id": "https://lotterytexts.com/#Main",
+                        "name": "SC South Carolina",
+                        "url": "https://lotterytexts.com/south-carolina/"
+                    },
+                    {
+                        "@context": "https://schema.org",
+                        "@type": "SiteNavigationElement",
+                        "@id": "https://lotterytexts.com/#Main",
+                        "name": "SD South Dakota",
+                        "url": "https://lotterytexts.com/south-dakota/"
+                    },
+                    {
+                        "@context": "https://schema.org",
+                        "@type": "SiteNavigationElement",
+                        "@id": "https://lotterytexts.com/#Main",
+                        "name": "TN Tennessee",
+                        "url": "https://lotterytexts.com/tennessee/"
+                    },
+                    {
+                        "@context": "https://schema.org",
+                        "@type": "SiteNavigationElement",
+                        "@id": "https://lotterytexts.com/#Main",
+                        "name": "TX Texas",
+                        "url": "https://lotterytexts.com/texas/"
+                    },
+                    {
+                        "@context": "https://schema.org",
+                        "@type": "SiteNavigationElement",
+                        "@id": "https://lotterytexts.com/#Main",
+                        "name": "VT Vermont",
+                        "url": "https://lotterytexts.com/vermont/"
+                    },
+                    {
+                        "@context": "https://schema.org",
+                        "@type": "SiteNavigationElement",
+                        "@id": "https://lotterytexts.com/#Main",
+                        "name": "VA Virginia",
+                        "url": "https://lotterytexts.com/virginia/"
+                    },
+                    {
+                        "@context": "https://schema.org",
+                        "@type": "SiteNavigationElement",
+                        "@id": "https://lotterytexts.com/#Main",
+                        "name": "WA Washington",
+                        "url": "https://lotterytexts.com/washington/"
+                    },
+                    {
+                        "@context": "https://schema.org",
+                        "@type": "SiteNavigationElement",
+                        "@id": "https://lotterytexts.com/#Main",
+                        "name": "WV West Virginia",
+                        "url": "https://lotterytexts.com/west-virginia/"
+                    },
+                    {
+                        "@context": "https://schema.org",
+                        "@type": "SiteNavigationElement",
+                        "@id": "https://lotterytexts.com/#Main",
+                        "name": "WI Wisconsin",
+                        "url": "https://lotterytexts.com/wisconsin/"
+                    },
+                    {
+                        "@context": "https://schema.org",
+                        "@type": "SiteNavigationElement",
+                        "@id": "https://lotterytexts.com/#Main",
+                        "name": "WY Wyoming",
+                        "url": "https://lotterytexts.com/wyoming/"
+                    },
+                    {
+                        "@context": "https://schema.org",
+                        "@type": "SiteNavigationElement",
+                        "@id": "https://lotterytexts.com/#Main",
+                        "name": "Lottery Sites",
+                        "url": "/best-lottery-sites/"
+                    },
+                    {
+                        "@context": "https://schema.org",
+                        "@type": "SiteNavigationElement",
+                        "@id": "https://lotterytexts.com/#Main",
+                        "name": "Quick Picks",
+                        "url": "https://lotterytexts.com/quick-picks/"
+                    },
+                    {
+                        "@context": "https://schema.org",
+                        "@type": "SiteNavigationElement",
+                        "@id": "https://lotterytexts.com/#Main",
+                        "name": "Jackpots",
+                        "url": "https://lotterytexts.com/jackpots/"
+                    },
+                    {
+                        "@context": "https://schema.org",
+                        "@type": "SiteNavigationElement",
+                        "@id": "https://lotterytexts.com/#Main",
+                        "name": "Blog",
+                        "url": "https://lotterytexts.com/blog/"
+                    }
+                ]
+            },
+            {
+                "@context": "https://schema.org",
+                "@type": "BreadcrumbList",
+                "@id": "https://lotterytexts.com/terms-and-conditions/#breadcrumb",
+                "itemListElement": [
+                    {
+                        "@type": "ListItem",
+                        "position": 1,
+                        "item": {
+                            "@id": "https://lotterytexts.com",
+                            "name": "LotteryTexts"
+                        }
+                    },
+                    {
+                        "@type": "ListItem",
+                        "position": 2,
+                        "item": {
+                            "@id": "https://lotterytexts.com/terms-and-conditions/",
+                            "name": "Terms and Conditions"
+                        }
+                    }
+                ]
+            }
+        ]
+    </script>
+
+    <link rel="icon" href="https://lotterytexts.com/wp-content/uploads/2021/03/favicon.png"
+          sizes="32x32"/>
+    <link rel="icon" href="https://lotterytexts.com/wp-content/uploads/2021/03/favicon.png"
+          sizes="192x192"/>
+    <link rel="apple-touch-icon"
+          href="https://lotterytexts.com/wp-content/uploads/2021/03/favicon.png"/>
+    <meta name="msapplication-TileImage"
+          content="https://lotterytexts.com/wp-content/uploads/2021/03/favicon.png"/>
+    <noscript>
+        <style id="rocket-lazyload-nojs-css">
+            .rll-youtube-player, [data-lazy-src]{display:none !important;}
+
+
+        </style>
+    </noscript>
+</head>
+
+<body class="page-template page-template-elementor_header_footer page page-id-8451 wp-custom-logo ast-desktop ast-page-builder-template ast-no-sidebar astra-3.1.2 ast-header-custom-item-inside group-blog ast-single-post ast-inherit-site-logo-transparent elementor-page-13854 ast-normal-title-enabled elementor-default elementor-template-full-width elementor-kit-9 elementor-page elementor-page-8451">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false"
+     role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;">
+    <defs>
+        <filter id="wp-duotone-dark-grayscale">
+            <feColorMatrix color-interpolation-filters="sRGB" type="matrix"
+                           values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 "/>
+            <feComponentTransfer color-interpolation-filters="sRGB">
+                <feFuncR type="table" tableValues="0 0.49803921568627"/>
+                <feFuncG type="table" tableValues="0 0.49803921568627"/>
+                <feFuncB type="table" tableValues="0 0.49803921568627"/>
+                <feFuncA type="table" tableValues="1 1"/>
+            </feComponentTransfer>
+            <feComposite in2="SourceGraphic" operator="in"/>
+        </filter>
+    </defs>
+</svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false"
+     role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;">
+    <defs>
+        <filter id="wp-duotone-grayscale">
+            <feColorMatrix color-interpolation-filters="sRGB" type="matrix"
+                           values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 "/>
+            <feComponentTransfer color-interpolation-filters="sRGB">
+                <feFuncR type="table" tableValues="0 1"/>
+                <feFuncG type="table" tableValues="0 1"/>
+                <feFuncB type="table" tableValues="0 1"/>
+                <feFuncA type="table" tableValues="1 1"/>
+            </feComponentTransfer>
+            <feComposite in2="SourceGraphic" operator="in"/>
+        </filter>
+    </defs>
+</svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false"
+     role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;">
+    <defs>
+        <filter id="wp-duotone-purple-yellow">
+            <feColorMatrix color-interpolation-filters="sRGB" type="matrix"
+                           values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 "/>
+            <feComponentTransfer color-interpolation-filters="sRGB">
+                <feFuncR type="table" tableValues="0.54901960784314 0.98823529411765"/>
+                <feFuncG type="table" tableValues="0 1"/>
+                <feFuncB type="table" tableValues="0.71764705882353 0.25490196078431"/>
+                <feFuncA type="table" tableValues="1 1"/>
+            </feComponentTransfer>
+            <feComposite in2="SourceGraphic" operator="in"/>
+        </filter>
+    </defs>
+</svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false"
+     role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;">
+    <defs>
+        <filter id="wp-duotone-blue-red">
+            <feColorMatrix color-interpolation-filters="sRGB" type="matrix"
+                           values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 "/>
+            <feComponentTransfer color-interpolation-filters="sRGB">
+                <feFuncR type="table" tableValues="0 1"/>
+                <feFuncG type="table" tableValues="0 0.27843137254902"/>
+                <feFuncB type="table" tableValues="0.5921568627451 0.27843137254902"/>
+                <feFuncA type="table" tableValues="1 1"/>
+            </feComponentTransfer>
+            <feComposite in2="SourceGraphic" operator="in"/>
+        </filter>
+    </defs>
+</svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false"
+     role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;">
+    <defs>
+        <filter id="wp-duotone-midnight">
+            <feColorMatrix color-interpolation-filters="sRGB" type="matrix"
+                           values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 "/>
+            <feComponentTransfer color-interpolation-filters="sRGB">
+                <feFuncR type="table" tableValues="0 0"/>
+                <feFuncG type="table" tableValues="0 0.64705882352941"/>
+                <feFuncB type="table" tableValues="0 1"/>
+                <feFuncA type="table" tableValues="1 1"/>
+            </feComponentTransfer>
+            <feComposite in2="SourceGraphic" operator="in"/>
+        </filter>
+    </defs>
+</svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false"
+     role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;">
+    <defs>
+        <filter id="wp-duotone-magenta-yellow">
+            <feColorMatrix color-interpolation-filters="sRGB" type="matrix"
+                           values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 "/>
+            <feComponentTransfer color-interpolation-filters="sRGB">
+                <feFuncR type="table" tableValues="0.78039215686275 1"/>
+                <feFuncG type="table" tableValues="0 0.94901960784314"/>
+                <feFuncB type="table" tableValues="0.35294117647059 0.47058823529412"/>
+                <feFuncA type="table" tableValues="1 1"/>
+            </feComponentTransfer>
+            <feComposite in2="SourceGraphic" operator="in"/>
+        </filter>
+    </defs>
+</svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false"
+     role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;">
+    <defs>
+        <filter id="wp-duotone-purple-green">
+            <feColorMatrix color-interpolation-filters="sRGB" type="matrix"
+                           values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 "/>
+            <feComponentTransfer color-interpolation-filters="sRGB">
+                <feFuncR type="table" tableValues="0.65098039215686 0.40392156862745"/>
+                <feFuncG type="table" tableValues="0 1"/>
+                <feFuncB type="table" tableValues="0.44705882352941 0.4"/>
+                <feFuncA type="table" tableValues="1 1"/>
+            </feComponentTransfer>
+            <feComposite in2="SourceGraphic" operator="in"/>
+        </filter>
+    </defs>
+</svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false"
+     role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;">
+    <defs>
+        <filter id="wp-duotone-blue-orange">
+            <feColorMatrix color-interpolation-filters="sRGB" type="matrix"
+                           values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 "/>
+            <feComponentTransfer color-interpolation-filters="sRGB">
+                <feFuncR type="table" tableValues="0.098039215686275 1"/>
+                <feFuncG type="table" tableValues="0 0.66274509803922"/>
+                <feFuncB type="table" tableValues="0.84705882352941 0.41960784313725"/>
+                <feFuncA type="table" tableValues="1 1"/>
+            </feComponentTransfer>
+            <feComposite in2="SourceGraphic" operator="in"/>
+        </filter>
+    </defs>
+</svg>
+<div
+        class="hfeed site" id="page">
+    <a class="skip-link screen-reader-text" href="#content">Skip to content</a>
+    <header data-elementor-type="header" data-elementor-id="1025"
+            class="elementor elementor-1025 elementor-location-header">
+        <div class="elementor-section-wrap">
+            <section
+                    class="elementor-section elementor-top-section elementor-element elementor-element-4a78b2ad elementor-section-full_width elementor-section-height-default elementor-section-height-default"
+                    data-id="4a78b2ad" data-element_type="section" id="header_pop">
+                <div class="elementor-container elementor-column-gap-default">
+                    <div class="elementor-row">
+                        <div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-20e91229"
+                             data-id="20e91229" data-element_type="column">
+                            <div class="elementor-column-wrap elementor-element-populated">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </header>
+    <div id="content" class="site-content">
+        <div class="ast-container">
+            <div data-elementor-type="wp-page" data-elementor-id="8451"
+                 class="elementor elementor-8451">
+                <div class="elementor-inner">
+                    <div class="elementor-section-wrap">
+                        <section
+                                class="elementor-section elementor-top-section elementor-element elementor-element-bc26725 elementor-section-boxed elementor-section-height-default elementor-section-height-default"
+                                data-id="bc26725" data-element_type="section"
+                                data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
+                            <div class="elementor-background-overlay"></div>
+                            <div class="elementor-container elementor-column-gap-default">
+                                <div class="elementor-row">
+                                    <div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-29ec6bb"
+                                         data-id="29ec6bb" data-element_type="column"
+                                         data-settings="{&quot;background_background&quot;:&quot;gradient&quot;}">
+                                        <div class="elementor-column-wrap elementor-element-populated">
+                                            <div class="elementor-widget-wrap">
+                                                <div class="elementor-element elementor-element-8d2cda3 elementor-widget elementor-widget-heading"
+                                                     data-id="8d2cda3" data-element_type="widget"
+                                                     data-widget_type="heading.default">
+                                                    <div class="elementor-widget-container">
+                                                        <h1 class="elementor-heading-title elementor-size-default">
+                                                            Terms and Conditions</h1></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                        <section
+                                class="elementor-section elementor-top-section elementor-element elementor-element-80e4fa5 elementor-section-boxed elementor-section-height-default elementor-section-height-default"
+                                data-id="80e4fa5" data-element_type="section">
+                            <div class="elementor-container elementor-column-gap-default">
+                                <div class="elementor-row">
+                                    <div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-50fbb3e"
+                                         data-id="50fbb3e" data-element_type="column">
+                                        <div class="elementor-column-wrap elementor-element-populated">
+                                            <div class="elementor-widget-wrap">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                        <section
+                                class="elementor-section elementor-top-section elementor-element elementor-element-d2e64ea elementor-section-boxed elementor-section-height-default elementor-section-height-default"
+                                data-id="d2e64ea" data-element_type="section">
+                            <div class="elementor-container elementor-column-gap-default">
+                                <div class="elementor-row">
+                                    <div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-be2d2bc"
+                                         data-id="be2d2bc" data-element_type="column">
+                                        <div class="elementor-column-wrap elementor-element-populated">
+                                            <div class="elementor-widget-wrap">
+                                                <div class="elementor-element elementor-element-cbb0033 elementor-widget elementor-widget-text-editor"
+                                                     data-id="cbb0033" data-element_type="widget"
+                                                     data-widget_type="text-editor.default">
+                                                    <div class="elementor-widget-container">
+                                                        <div class="elementor-text-editor elementor-clearfix">
+                                                            <p>These terms and conditions outline
+                                                                the rules and regulations for the
+                                                                use of Xổ số Đắk Nông&#8217;s</p>
+                                                            <p>By accessing this website we assume
+                                                                you accept these terms and
+                                                                conditions. Do not continue to use
+                                                                Xổ số Đắk Nông if you do not agree to
+                                                                take all of the terms and conditions
+                                                                stated on this page.</p>
+                                                            <p>The following terminology applies to
+                                                                these Terms and Conditions, Privacy
+                                                                Statement and Disclaimer Notice and
+                                                                all Agreements: &#8220;Client&#8221;,
+                                                                &#8220;You&#8221; and &#8220;Your&#8221;
+                                                                refers to you, the person log on
+                                                                this website and compliant to the
+                                                                Company’s terms and conditions.
+                                                                &#8220;The Company&#8221;, &#8220;Ourselves&#8221;,
+                                                                &#8220;We&#8221;, &#8220;Our&#8221;
+                                                                and &#8220;Us&#8221;, refers to our
+                                                                Company. &#8220;Party&#8221;,
+                                                                &#8220;Parties&#8221;, or &#8220;Us&#8221;,
+                                                                refers to both the Client and
+                                                                ourselves. All terms refer to the
+                                                                offer, acceptance and consideration
+                                                                of payment necessary to undertake
+                                                                the process of our assistance to the
+                                                                Client in the most appropriate
+                                                                manner for the express purpose of
+                                                                meeting the Client’s needs in
+                                                                respect of provision of the
+                                                                Company’s stated services, in
+                                                                accordance with and subject to,
+                                                                prevailing law of Netherlands. Any
+                                                                use of the above terminology or
+                                                                other words in the singular, plural,
+                                                                capitalization and/or he/she or
+                                                                they, are taken as interchangeable
+                                                                and therefore as referring to
+                                                                same.</p>
+                                                            <h3><strong>Cookies</strong></h3>
+                                                            <p>We employ the use of cookies. By
+                                                                accessing Xổ số Đắk Nông, you agreed
+                                                                to use cookies in agreement with the
+                                                                Xổ số Đắk Nông&#8217;s Privacy
+                                                                Policy.</p>
+                                                            <p>Most interactive websites use cookies
+                                                                to let us retrieve the user’s
+                                                                details for each visit. Cookies are
+                                                                used by our website to enable the
+                                                                functionality of certain areas to
+                                                                make it easier for people visiting
+                                                                our website. Some of our
+                                                                affiliate/advertising partners may
+                                                                also use cookies.</p>
+                                                            <h3><strong>License</strong></h3>
+                                                            <p>Unless otherwise stated, LotteryTexts
+                                                                and/or its licensors own the
+                                                                intellectual property rights for all
+                                                                material on Xổ số Đắk Nông. All
+                                                                intellectual property rights are
+                                                                reserved. You may access this from
+                                                                Xổ số Đắk Nông for your own personal
+                                                                use subjected to restrictions set in
+                                                                these terms and conditions.</p>
+                                                            <p>You must not:</p>
+                                                            <ul>
+                                                                <li>Republish material from
+                                                                    Xổ số Đắk Nông
+                                                                </li>
+                                                                <li>Sell, rent or sub-license
+                                                                    material from LotteryTexts
+                                                                </li>
+                                                                <li>Reproduce, duplicate or copy
+                                                                    material from LotteryTexts
+                                                                </li>
+                                                                <li>Redistribute content from
+                                                                    Xổ số Đắk Nông
+                                                                </li>
+                                                            </ul>
+                                                            <p>This Agreement shall begin on the
+                                                                date hereof. </p>
+                                                            <p>Parts of this website offer an
+                                                                opportunity for users to post and
+                                                                exchange opinions and information in
+                                                                certain areas of the website.
+                                                                Xổ số Đắk Nông does not filter, edit,
+                                                                publish or review Comments prior to
+                                                                their presence on the website.
+                                                                Comments do not reflect the views
+                                                                and opinions of Xổ số Đắk Nông,its
+                                                                agents and/or affiliates. Comments
+                                                                reflect the views and opinions of
+                                                                the person who post their views and
+                                                                opinions. To the extent permitted by
+                                                                applicable laws, Xổ số Đắk Nông shall
+                                                                not be liable for the Comments or
+                                                                for any liability, damages or
+                                                                expenses caused and/or suffered as a
+                                                                result of any use of and/or posting
+                                                                of and/or appearance of the Comments
+                                                                on this website.</p>
+                                                            <p>Xổ số Đắk Nông reserves the right to
+                                                                monitor all Comments and to remove
+                                                                any Comments which can be considered
+                                                                inappropriate, offensive or causes
+                                                                breach of these Terms and
+                                                                Conditions.</p>
+                                                            <p>You warrant and represent that:</p>
+                                                            <ul>
+                                                                <li>You are entitled to post the
+                                                                    Comments on our website and have
+                                                                    all necessary licenses and
+                                                                    consents to do so;
+                                                                </li>
+                                                                <li>The Comments do not invade any
+                                                                    intellectual property right,
+                                                                    including without limitation
+                                                                    copyright, patent or trademark
+                                                                    of any third party;
+                                                                </li>
+                                                                <li>The Comments do not contain any
+                                                                    defamatory, libelous, offensive,
+                                                                    indecent or otherwise unlawful
+                                                                    material which is an invasion of
+                                                                    privacy
+                                                                </li>
+                                                                <li>The Comments will not be used to
+                                                                    solicit or promote business or
+                                                                    custom or present commercial
+                                                                    activities or unlawful activity.
+                                                                </li>
+                                                            </ul>
+                                                            <p>You hereby grant Xổ số Đắk Nông a
+                                                                non-exclusive license to use,
+                                                                reproduce, edit and authorize others
+                                                                to use, reproduce and edit any of
+                                                                your Comments in any and all forms,
+                                                                formats or media.</p>
+                                                            <h3><strong>Hyperlinking to our
+                                                                Content</strong></h3>
+                                                            <p>The following organizations may link
+                                                                to our Website without prior written
+                                                                approval:</p>
+                                                            <ul>
+                                                                <li>Government agencies;</li>
+                                                                <li>Search engines;</li>
+                                                                <li>News organizations;</li>
+                                                                <li>Online directory distributors
+                                                                    may link to our Website in the
+                                                                    same manner as they hyperlink to
+                                                                    the Websites of other listed
+                                                                    businesses; and
+                                                                </li>
+                                                                <li>System wide Accredited
+                                                                    Businesses except soliciting
+                                                                    non-profit organizations,
+                                                                    charity shopping malls, and
+                                                                    charity fundraising groups which
+                                                                    may not hyperlink to our Web
+                                                                    site.
+                                                                </li>
+                                                            </ul>
+                                                            <p>These organizations may link to our
+                                                                home page, to publications or to
+                                                                other Website information so long as
+                                                                the link: (a) is not in any way
+                                                                deceptive; (b) does not falsely
+                                                                imply sponsorship, endorsement or
+                                                                approval of the linking party and
+                                                                its products and/or services; and
+                                                                (c) fits within the context of the
+                                                                linking party’s site.</p>
+                                                            <p>We may consider and approve other
+                                                                link requests from the following
+                                                                types of organizations:</p>
+                                                            <ul>
+                                                                <li>commonly-known consumer and/or
+                                                                    business information sources;
+                                                                </li>
+                                                                <li>dot.com community sites;</li>
+                                                                <li>associations or other groups
+                                                                    representing charities;
+                                                                </li>
+                                                                <li>online directory distributors;
+                                                                </li>
+                                                                <li>internet portals;</li>
+                                                                <li>accounting, law and consulting
+                                                                    firms; and
+                                                                </li>
+                                                                <li>educational institutions and
+                                                                    trade associations.
+                                                                </li>
+                                                            </ul>
+                                                            <p>We will approve link requests from
+                                                                these organizations if we decide
+                                                                that: (a) the link would not make us
+                                                                look unfavorably to ourselves or to
+                                                                our accredited businesses; (b) the
+                                                                organization does not have any
+                                                                negative records with us; (c) the
+                                                                benefit to us from the visibility of
+                                                                the hyperlink compensates the
+                                                                absence of Xổ số Đắk Nông; and (d) the
+                                                                link is in the context of general
+                                                                resource information.</p>
+                                                            <p>These organizations may link to our
+                                                                home page so long as the link: (a)
+                                                                is not in any way deceptive; (b)
+                                                                does not falsely imply sponsorship,
+                                                                endorsement or approval of the
+                                                                linking party and its products or
+                                                                services; and (c) fits within the
+                                                                context of the linking party’s
+                                                                site.</p>
+                                                            <p>If you are one of the organizations
+                                                                listed in paragraph 2 above and are
+                                                                interested in linking to our
+                                                                website, you must inform us by
+                                                                sending an e-mail to Xổ số Đắk Nông.
+                                                                Please include your name, your
+                                                                organization name, contact
+                                                                information as well as the URL of
+                                                                your site, a list of any URLs from
+                                                                which you intend to link to our
+                                                                Website, and a list of the URLs on
+                                                                our site to which you would like to
+                                                                link. Wait 2-3 weeks for a
+                                                                response.</p>
+                                                            <p>Approved organizations may hyperlink
+                                                                to our Website as follows:</p>
+                                                            <ul>
+                                                                <li>By use of our corporate name;
+                                                                    or
+                                                                </li>
+                                                                <li>By use of the uniform resource
+                                                                    locator being linked to; or
+                                                                </li>
+                                                                <li>By use of any other description
+                                                                    of our Website being linked to
+                                                                    that makes sense within the
+                                                                    context and format of content on
+                                                                    the linking party’s site.
+                                                                </li>
+                                                            </ul>
+                                                            <p>No use of Xổ số Đắk Nông&#8217;s logo
+                                                                or other artwork will be allowed for
+                                                                linking absent a trademark license
+                                                                agreement.</p>
+                                                            <h3><strong>iFrames</strong></h3>
+                                                            <p>Without prior approval and written
+                                                                permission, you may not create
+                                                                frames around our Webpages that
+                                                                alter in any way the visual
+                                                                presentation or appearance of our
+                                                                Website.</p>
+                                                            <h3><strong>Content Liability</strong>
+                                                            </h3>
+                                                            <p>We shall not be hold responsible for
+                                                                any content that appears on your
+                                                                Website. You agree to protect and
+                                                                defend us against all claims that is
+                                                                rising on your Website. No link(s)
+                                                                should appear on any Website that
+                                                                may be interpreted as libelous,
+                                                                obscene or criminal, or which
+                                                                infringes, otherwise violates, or
+                                                                advocates the infringement or other
+                                                                violation of, any third party
+                                                                rights.</p>
+                                                            <h3><strong>Your Privacy</strong></h3>
+
+                                                            <h3><strong>Reservation of
+                                                                Rights</strong></h3>
+                                                            <p>We reserve the right to request that
+                                                                you remove all links or any
+                                                                particular link to our Website. You
+                                                                approve to immediately remove all
+                                                                links to our Website upon request.
+                                                                We also reserve the right to amen
+                                                                these terms and conditions and it’s
+                                                                linking policy at any time. By
+                                                                continuously linking to our Website,
+                                                                you agree to be bound to and follow
+                                                                these linking terms and
+                                                                conditions.</p>
+                                                            <h3><strong>Removal of links from our
+                                                                website</strong></h3>
+                                                            <p>If you find any link on our Website
+                                                                that is offensive for any reason,
+                                                                you are free to contact and inform
+                                                                us any moment. We will consider
+                                                                requests to remove links but we are
+                                                                not obligated to or so or to respond
+                                                                to you directly.</p>
+                                                            <p>We do not ensure that the information
+                                                                on this website is correct, we do
+                                                                not warrant its completeness or
+                                                                accuracy; nor do we promise to
+                                                                ensure that the website remains
+                                                                available or that the material on
+                                                                the website is kept up to date.</p>
+                                                            <h3><strong>Disclaimer</strong></h3>
+                                                            <p>To the maximum extent permitted by
+                                                                applicable law, we exclude all
+                                                                representations, warranties and
+                                                                conditions relating to our website
+                                                                and the use of this website. Nothing
+                                                                in this disclaimer will:</p>
+                                                            <ul>
+                                                                <li>limit or exclude our or your
+                                                                    liability for death or personal
+                                                                    injury;
+                                                                </li>
+                                                                <li>limit or exclude our or your
+                                                                    liability for fraud or
+                                                                    fraudulent misrepresentation;
+                                                                </li>
+                                                                <li>limit any of our or your
+                                                                    liabilities in any way that is
+                                                                    not permitted under applicable
+                                                                    law; or
+                                                                </li>
+                                                                <li>exclude any of our or your
+                                                                    liabilities that may not be
+                                                                    excluded under applicable law.
+                                                                </li>
+                                                            </ul>
+                                                            <p>The limitations and prohibitions of
+                                                                liability set in this Section and
+                                                                elsewhere in this disclaimer: (a)
+                                                                are subject to the preceding
+                                                                paragraph; and (b) govern all
+                                                                liabilities arising under the
+                                                                disclaimer, including liabilities
+                                                                arising in contract, in tort and for
+                                                                breach of statutory duty.</p>
+                                                            <p>As long as the website and the
+                                                                information and services on the
+                                                                website are provided free of charge,
+                                                                we will not be liable for any loss
+                                                                or damage of any nature.</p></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </div> <!-- ast-container -->
+    </div><!-- #content -->
+    <div data-elementor-type="footer" data-elementor-id="4218"
+         class="elementor elementor-4218 elementor-location-footer">
+        <div class="elementor-section-wrap">
+            <section
+                    class="elementor-section elementor-top-section elementor-element elementor-element-b9ce5e6 elementor-section-boxed elementor-section-height-default elementor-section-height-default"
+                    data-id="b9ce5e6" data-element_type="section">
+                <div class="elementor-container elementor-column-gap-default">
+                    <div class="elementor-row">
+                        <div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-882ff2d"
+                             data-id="882ff2d" data-element_type="column">
+                            <div class="elementor-column-wrap elementor-element-populated">
+                                <div class="elementor-widget-wrap">
+                                    <div class="elementor-element elementor-element-e85e73b elementor-widget elementor-widget-spacer"
+                                         data-id="e85e73b" data-element_type="widget"
+                                         data-widget_type="spacer.default">
+                                        <div class="elementor-widget-container">
+                                            <div class="elementor-spacer">
+                                                <div class="elementor-spacer-inner"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+        </div>
+    </div>
+</div><!-- #page -->
+<div style="position:absolute;top:0px;right:8%;z-index:999999;" id="gtranslate_wrapper">
+    <!-- GTranslate: https://gtranslate.io/ -->
+    <style>
+.switcher {font-family:Arial;font-size:10pt;text-align:left;cursor:pointer;overflow:hidden;width:163px;line-height:17px;}
+.switcher a {text-decoration:none;display:block;font-size:10pt;-webkit-box-sizing:content-box;-moz-box-sizing:content-box;box-sizing:content-box;}
+.switcher a img {vertical-align:middle;display:inline;border:0;padding:0;margin:0;opacity:0.8;}
+.switcher a:hover img {opacity:1;}
+.switcher .selected {background:#ffffff linear-gradient(180deg, #ffffff 0%, #ffffff 70%);position:relative;z-index:9999;}
+.switcher .selected a {border:1px solid #f9f9f9;color:#000000;padding:3px 5px;width:151px;}
+.switcher .selected a:after {height:16px;display:inline-block;position:absolute;right:5px;width:15px;background-position:50%;background-size:7px;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 285 285'><path d='M282 76.5l-14.2-14.3a9 9 0 0 0-13.1 0L142.5 174.4 30.3 62.2a9 9 0 0 0-13.2 0L3 76.5a9 9 0 0 0 0 13.1l133 133a9 9 0 0 0 13.1 0l133-133a9 9 0 0 0 0-13z' style='fill:%23666666'/></svg>");background-repeat:no-repeat;content:""!important;transition:all .2s;}
+.switcher .selected a.open:after {-webkit-transform: rotate(-180deg);transform:rotate(-180deg);}
+.switcher .selected a:hover {background:#ffffff}
+.switcher .option {position:relative;z-index:9998;border-left:1px solid #f9f9f9;border-right:1px solid #f9f9f9;border-bottom:1px solid #f9f9f9;background-color:#ffffff;display:none;width:161px;max-height:198px;-webkit-box-sizing:content-box;-moz-box-sizing:content-box;box-sizing:content-box;overflow-y:auto;overflow-x:hidden;}
+.switcher .option a {color:#000000;padding:3px 5px;}
+.switcher .option a:hover {background:#ededed;}
+.switcher .option a.selected {background:#ededed;}
+#selected_lang_name {float: none;}
+.l_name {float: none !important;margin: 0;}
+.switcher .option::-webkit-scrollbar-track{-webkit-box-shadow:inset 0 0 3px rgba(0,0,0,0.3);border-radius:5px;background-color:#f5f5f5;}
+.switcher .option::-webkit-scrollbar {width:5px;}
+.switcher .option::-webkit-scrollbar-thumb {border-radius:5px;-webkit-box-shadow: inset 0 0 3px rgba(0,0,0,.3);background-color:#888;}
+
+
+
+    </style>
+    <div class="switcher notranslate">
+
+        <div class="option">
+            <a href="https://lotterytexts.com"
+               onclick="doGTranslate('en|en');jQuery('div.switcher div.selected a').html(jQuery(this).html());return false;"
+               title="English" class="nturl selected"><img
+                    data-gt-lazy-src="//lotterytexts.com/wp-content/plugins/gtranslate/flags/16/en-us.png"
+                    height="16" width="16" alt="en"/> English</a><a
+                href="https://lotterytexts.com/es/"
+                onclick="doGTranslate('en|es');jQuery('div.switcher div.selected a').html(jQuery(this).html());return false;"
+                title="Spanish" class="nturl"><img
+                data-gt-lazy-src="//lotterytexts.com/wp-content/plugins/gtranslate/flags/16/es.png"
+                height="16" width="16" alt="es"/> Spanish</a><a href="https://lotterytexts.com/de/"
+                                                                onclick="doGTranslate('en|de');jQuery('div.switcher div.selected a').html(jQuery(this).html());return false;"
+                                                                title="German" class="nturl"><img
+                data-gt-lazy-src="//lotterytexts.com/wp-content/plugins/gtranslate/flags/16/de.png"
+                height="16" width="16" alt="de"/> German</a><a href="https://lotterytexts.com/fr/"
+                                                               onclick="doGTranslate('en|fr');jQuery('div.switcher div.selected a').html(jQuery(this).html());return false;"
+                                                               title="French" class="nturl"><img
+                data-gt-lazy-src="//lotterytexts.com/wp-content/plugins/gtranslate/flags/16/fr.png"
+                height="16" width="16" alt="fr"/> French</a><a href="https://lotterytexts.com/ru/"
+                                                               onclick="doGTranslate('en|ru');jQuery('div.switcher div.selected a').html(jQuery(this).html());return false;"
+                                                               title="Russian" class="nturl"><img
+                data-gt-lazy-src="//lotterytexts.com/wp-content/plugins/gtranslate/flags/16/ru.png"
+                height="16" width="16" alt="ru"/> Russian</a><a href="https://lotterytexts.com/pt/"
+                                                                onclick="doGTranslate('en|pt');jQuery('div.switcher div.selected a').html(jQuery(this).html());return false;"
+                                                                title="Portuguese"
+                                                                class="nturl"><img
+                data-gt-lazy-src="//lotterytexts.com/wp-content/plugins/gtranslate/flags/16/pt-br.png"
+                height="16" width="16" alt="pt"/> Portuguese</a><a
+                href="https://lotterytexts.com/it/"
+                onclick="doGTranslate('en|it');jQuery('div.switcher div.selected a').html(jQuery(this).html());return false;"
+                title="Italian" class="nturl"><img
+                data-gt-lazy-src="//lotterytexts.com/wp-content/plugins/gtranslate/flags/16/it.png"
+                height="16" width="16" alt="it"/> Italian</a><a href="https://lotterytexts.com/pl/"
+                                                                onclick="doGTranslate('en|pl');jQuery('div.switcher div.selected a').html(jQuery(this).html());return false;"
+                                                                title="Polish" class="nturl"><img
+                data-gt-lazy-src="//lotterytexts.com/wp-content/plugins/gtranslate/flags/16/pl.png"
+                height="16" width="16" alt="pl"/> Polish</a><a href="https://lotterytexts.com/hi/"
+                                                               onclick="doGTranslate('en|hi');jQuery('div.switcher div.selected a').html(jQuery(this).html());return false;"
+                                                               title="Hindi" class="nturl"><img
+                data-gt-lazy-src="//lotterytexts.com/wp-content/plugins/gtranslate/flags/16/hi.png"
+                height="16" width="16" alt="hi"/> Hindi</a><a href="https://lotterytexts.com/nl/"
+                                                              onclick="doGTranslate('en|nl');jQuery('div.switcher div.selected a').html(jQuery(this).html());return false;"
+                                                              title="Dutch" class="nturl"><img
+                data-gt-lazy-src="//lotterytexts.com/wp-content/plugins/gtranslate/flags/16/nl.png"
+                height="16" width="16" alt="nl"/> Dutch</a><a href="https://lotterytexts.com/ko/"
+                                                              onclick="doGTranslate('en|ko');jQuery('div.switcher div.selected a').html(jQuery(this).html());return false;"
+                                                              title="Korean" class="nturl"><img
+                data-gt-lazy-src="//lotterytexts.com/wp-content/plugins/gtranslate/flags/16/ko.png"
+                height="16" width="16" alt="ko"/> Korean</a><a href="https://lotterytexts.com/ja/"
+                                                               onclick="doGTranslate('en|ja');jQuery('div.switcher div.selected a').html(jQuery(this).html());return false;"
+                                                               title="Japanese" class="nturl"><img
+                data-gt-lazy-src="//lotterytexts.com/wp-content/plugins/gtranslate/flags/16/ja.png"
+                height="16" width="16" alt="ja"/> Japanese</a><a
+                href="https://lotterytexts.com/zh-CN/"
+                onclick="doGTranslate('en|zh-CN');jQuery('div.switcher div.selected a').html(jQuery(this).html());return false;"
+                title="Chinese (Simplified)" class="nturl"><img
+                data-gt-lazy-src="//lotterytexts.com/wp-content/plugins/gtranslate/flags/16/zh-CN.png"
+                height="16" width="16" alt="zh-CN"/> Chinese (Simplified)</a></div>
+    </div>
+    <script type="rocketlazyloadscript">
+jQuery('.switcher .selected').click(function() {jQuery('.switcher .option a img').each(function() {if(!jQuery(this)[0].hasAttribute('src'))jQuery(this).attr('src', jQuery(this).attr('data-gt-lazy-src'))});if(!(jQuery('.switcher .option').is(':visible'))) {jQuery('.switcher .option').stop(true,true).delay(100).slideDown(500);jQuery('.switcher .selected a').toggleClass('open')}});
+jQuery('.switcher .option').bind('mousewheel', function(e) {var options = jQuery('.switcher .option');if(options.is(':visible'))options.scrollTop(options.scrollTop() - e.originalEvent.wheelDelta);return false;});
+jQuery('body').not('.switcher').click(function(e) {if(jQuery('.switcher .option').is(':visible') && e.target != jQuery('.switcher .option').get(0)) {jQuery('.switcher .option').stop(true,true).delay(100).slideUp(500);jQuery('.switcher .selected a').toggleClass('open')}});
+
+
+
+    </script>
+
+
+    <script type="rocketlazyloadscript">
+function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;if(lang_pair=='')return;var lang=lang_pair.split('|')[1];var plang=location.pathname.split('/')[1];if(plang.length !=2 && plang != 'zh-CN' && plang != 'zh-TW' && plang != 'hmn' && plang != 'haw' && plang != 'ceb')plang='en';if(lang == 'en')location.href=location.protocol+'//'+location.host+gt_request_uri;else location.href=location.protocol+'//'+location.host+'/'+lang+gt_request_uri;}
+
+
+
+    </script>
+    <script type="rocketlazyloadscript">
+        (function gt_jquery_ready() {if(!window.jQuery||!jQuery.fn.click) return setTimeout(gt_jquery_ready, 20);jQuery(document).ready(function() {var lang_html = jQuery(".switcher div.option a[onclick*='|"+jQuery('html').attr('lang')+"']").html();if(typeof lang_html != "undefined")jQuery('.switcher div.selected a').html(lang_html.replace("data-gt-lazy-", ""))});})();
+
+
+    </script>
+</div>
+<div data-elementor-type="popup" data-elementor-id="9901"
+     class="elementor elementor-9901 elementor-location-popup"
+     data-elementor-settings="{&quot;entrance_animation&quot;:&quot;fadeIn&quot;,&quot;exit_animation&quot;:&quot;fadeIn&quot;,&quot;entrance_animation_duration&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;triggers&quot;:{&quot;page_load_delay&quot;:5,&quot;page_load&quot;:&quot;yes&quot;},&quot;timing&quot;:{&quot;times_times&quot;:2,&quot;times_count&quot;:&quot;close&quot;,&quot;times&quot;:&quot;yes&quot;}}">
+    <div class="elementor-section-wrap">
+        <section
+                class="elementor-section elementor-top-section elementor-element elementor-element-4a518711 elementor-section-boxed elementor-section-height-default elementor-section-height-default"
+                data-id="4a518711" data-element_type="section"
+                data-settings="{&quot;animation&quot;:&quot;none&quot;}">
+            <div class="elementor-background-overlay"></div>
+            <div class="elementor-container elementor-column-gap-default">
+                <div class="elementor-row">
+                    <div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-54f227a0"
+                         data-id="54f227a0" data-element_type="column">
+                        <div class="elementor-column-wrap elementor-element-populated">
+                            <div class="elementor-widget-wrap">
+                                <section
+                                        class="elementor-section elementor-inner-section elementor-element elementor-element-92bc607 elementor-section-boxed elementor-section-height-default elementor-section-height-default"
+                                        data-id="92bc607" data-element_type="section">
+                                    <div class="elementor-container elementor-column-gap-default">
+                                        <div class="elementor-row">
+                                            <div class="elementor-column elementor-col-100 elementor-inner-column elementor-element elementor-element-5d627207"
+                                                 data-id="5d627207" data-element_type="column">
+                                                <div class="elementor-column-wrap elementor-element-populated">
+                                                    <div class="elementor-widget-wrap">
+                                                        <div class="elementor-element elementor-element-2c371539 elementor-invisible elementor-widget elementor-widget-text-editor"
+                                                             data-id="2c371539"
+                                                             data-element_type="widget"
+                                                             data-settings="{&quot;_animation&quot;:&quot;bounceIn&quot;}"
+                                                             data-widget_type="text-editor.default">
+                                                            <div class="elementor-widget-container">
+                                                                <div class="elementor-text-editor elementor-clearfix">
+                                                                    <p>
+                                                                        <img class="alignnone size-medium wp-image-42"
+                                                                             src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%2059'%3E%3C/svg%3E"
+                                                                             alt="Powerball"
+                                                                             width="300" height="59"
+                                                                             data-lazy-src="https://lotterytexts.com/wp-content/uploads/2021/01/powerballlogo-e1610441705385-300x59.png"/>
+                                                                    <noscript><img
+                                                                            class="alignnone size-medium wp-image-42"
+                                                                            src="https://lotterytexts.com/wp-content/uploads/2021/01/powerballlogo-e1610441705385-300x59.png"
+                                                                            alt="Powerball"
+                                                                            width="300"
+                                                                            height="59"/></noscript>
+                                                                    </p><p>
+                                                                    <span>USD 26 Million</span>!</p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="elementor-element elementor-element-17c6bb3a elementor-widget elementor-widget-text-editor"
+                                                             data-id="17c6bb3a"
+                                                             data-element_type="widget"
+                                                             data-widget_type="text-editor.default">
+                                                            <div class="elementor-widget-container">
+                                                                <div class="elementor-text-editor elementor-clearfix">
+                                                                    <p>Next draw: <span>Monday, Jul 04, 2022</span>
+                                                                    </p></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
+                                <div class="elementor-element elementor-element-4d57a492 elementor-align-center elementor-mobile-align-justify elementor-widget elementor-widget-button"
+                                     data-id="4d57a492" data-element_type="widget"
+                                     data-widget_type="button.default">
+                                    <div class="elementor-widget-container">
+                                        <div class="elementor-button-wrapper">
+                                            <a href="https://lotterytexts.com/go/powerball/"
+                                               target="_blank" rel="nofollow"
+                                               class="elementor-button-link elementor-button elementor-size-sm"
+                                               role="button">
+						<span class="elementor-button-content-wrapper">
+						<span class="elementor-button-text">Play Now!</span>
+		</span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="elementor-element elementor-element-70194cf9 elementor-widget elementor-widget-heading"
+                                     data-id="70194cf9" data-element_type="widget"
+                                     data-widget_type="heading.default">
+                                    <div class="elementor-widget-container">
+                                        <span class="elementor-heading-title elementor-size-default"><a
+                                                href="#elementor-action%3Aaction%3Dpopup%3Aclose%26settings%3DeyJkb19ub3Rfc2hvd19hZ2FpbiI6IiJ9">(Close)</a></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+
+<script id='astra-theme-js-js-extra'>
+var astra = {"break_point":"921","isRtl":""};
+
+
+
+</script>
+<script type="rocketlazyloadscript"
+        src='https://lotterytexts.com/wp-content/themes/astra/assets/js/minified/style.min.js?ver=3.1.2'
+        id='astra-theme-js-js'></script>
+<script id='clicktrack-adrotate-js-extra'>
+var click_object = {"ajax_url":"https:\/\/lotterytexts.com\/wp-admin\/admin-ajax.php"};
+
+
+
+</script>
+<script type="rocketlazyloadscript"
+        src='https://lotterytexts.com/wp-content/plugins/adrotate/library/jquery.adrotate.clicktracker.js'
+        id='clicktrack-adrotate-js'></script>
+<script id='eafl-public-js-extra'>
+var eafl_public = {"home_url":"https:\/\/lotterytexts.com\/","ajax_url":"https:\/\/lotterytexts.com\/wp-admin\/admin-ajax.php","nonce":"2ba0dfaebd"};
+
+
+
+</script>
+<script type="rocketlazyloadscript"
+        src='https://lotterytexts.com/wp-content/plugins/easy-affiliate-links/dist/public.js?ver=3.6.0'
+        id='eafl-public-js'></script>
+<script id='toc-front-js-extra'>
+var tocplus = {"visibility_show":"show","visibility_hide":"hide","visibility_hide_by_default":"1","width":"Auto"};
+
+
+
+</script>
+<script type="rocketlazyloadscript"
+        src='https://lotterytexts.com/wp-content/plugins/table-of-contents-plus/front.min.js?ver=2106'
+        id='toc-front-js'></script>
+<script type="rocketlazyloadscript" id='rocket-browser-checker-js-after'>
+"use strict";var _createClass=function(){function defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||!1,descriptor.configurable=!0,"value"in descriptor&&(descriptor.writable=!0),Object.defineProperty(target,descriptor.key,descriptor)}}return function(Constructor,protoProps,staticProps){return protoProps&&defineProperties(Constructor.prototype,protoProps),staticProps&&defineProperties(Constructor,staticProps),Constructor}}();function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor))throw new TypeError("Cannot call a class as a function")}var RocketBrowserCompatibilityChecker=function(){function RocketBrowserCompatibilityChecker(options){_classCallCheck(this,RocketBrowserCompatibilityChecker),this.passiveSupported=!1,this._checkPassiveOption(this),this.options=!!this.passiveSupported&&options}return _createClass(RocketBrowserCompatibilityChecker,[{key:"_checkPassiveOption",value:function(self){try{var options={get passive(){return!(self.passiveSupported=!0)}};window.addEventListener("test",null,options),window.removeEventListener("test",null,options)}catch(err){self.passiveSupported=!1}}},{key:"initRequestIdleCallback",value:function(){!1 in window&&(window.requestIdleCallback=function(cb){var start=Date.now();return setTimeout(function(){cb({didTimeout:!1,timeRemaining:function(){return Math.max(0,50-(Date.now()-start))}})},1)}),!1 in window&&(window.cancelIdleCallback=function(id){return clearTimeout(id)})}},{key:"isDataSaverModeOn",value:function(){return"connection"in navigator&&!0===navigator.connection.saveData}},{key:"supportsLinkPrefetch",value:function(){var elem=document.createElement("link");return elem.relList&&elem.relList.supports&&elem.relList.supports("prefetch")&&window.IntersectionObserver&&"isIntersecting"in IntersectionObserverEntry.prototype}},{key:"isSlowConnection",value:function(){return"connection"in navigator&&"effectiveType"in navigator.connection&&("2g"===navigator.connection.effectiveType||"slow-2g"===navigator.connection.effectiveType)}}]),RocketBrowserCompatibilityChecker}();
+
+
+
+</script>
+<script id='rocket-preload-links-js-extra'>
+var RocketPreloadLinksConfig = {"excludeUris":"\/(?:.+\/)?feed(?:\/(?:.+\/?)?)?$|\/(?:.+\/)?embed\/|\/(index\\.php\/)?wp\\-json(\/.*|$)|\/wp-admin\/|\/logout\/|\/wp-login.php|\/refer\/|\/go\/|\/recommend\/|\/recommends\/","usesTrailingSlash":"1","imageExt":"jpg|jpeg|gif|png|tiff|bmp|webp|avif|pdf|doc|docx|xls|xlsx|php","fileExt":"jpg|jpeg|gif|png|tiff|bmp|webp|avif|pdf|doc|docx|xls|xlsx|php|html|htm","siteUrl":"https:\/\/lotterytexts.com","onHoverDelay":"100","rateThrottle":"3"};
+
+
+
+</script>
+<script type="rocketlazyloadscript" id='rocket-preload-links-js-after'>
+(function() {
+"use strict";var r="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e},e=function(){function i(e,t){for(var n=0;n<t.length;n++){var i=t[n];i.enumerable=i.enumerable||!1,i.configurable=!0,"value"in i&&(i.writable=!0),Object.defineProperty(e,i.key,i)}}return function(e,t,n){return t&&i(e.prototype,t),n&&i(e,n),e}}();function i(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}var t=function(){function n(e,t){i(this,n),this.browser=e,this.config=t,this.options=this.browser.options,this.prefetched=new Set,this.eventTime=null,this.threshold=1111,this.numOnHover=0}return e(n,[{key:"init",value:function(){!this.browser.supportsLinkPrefetch()||this.browser.isDataSaverModeOn()||this.browser.isSlowConnection()||(this.regex={excludeUris:RegExp(this.config.excludeUris,"i"),images:RegExp(".("+this.config.imageExt+")$","i"),fileExt:RegExp(".("+this.config.fileExt+")$","i")},this._initListeners(this))}},{key:"_initListeners",value:function(e){-1<this.config.onHoverDelay&&document.addEventListener("mouseover",e.listener.bind(e),e.listenerOptions),document.addEventListener("mousedown",e.listener.bind(e),e.listenerOptions),document.addEventListener("touchstart",e.listener.bind(e),e.listenerOptions)}},{key:"listener",value:function(e){var t=e.target.closest("a"),n=this._prepareUrl(t);if(null!==n)switch(e.type){case"mousedown":case"touchstart":this._addPrefetchLink(n);break;case"mouseover":this._earlyPrefetch(t,n,"mouseout")}}},{key:"_earlyPrefetch",value:function(t,e,n){var i=this,r=setTimeout(function(){if(r=null,0===i.numOnHover)setTimeout(function(){return i.numOnHover=0},1e3);else if(i.numOnHover>i.config.rateThrottle)return;i.numOnHover++,i._addPrefetchLink(e)},this.config.onHoverDelay);t.addEventListener(n,function e(){t.removeEventListener(n,e,{passive:!0}),null!==r&&(clearTimeout(r),r=null)},{passive:!0})}},{key:"_addPrefetchLink",value:function(i){return this.prefetched.add(i.href),new Promise(function(e,t){var n=document.createElement("link");n.rel="prefetch",n.href=i.href,n.onload=e,n.onerror=t,document.head.appendChild(n)}).catch(function(){})}},{key:"_prepareUrl",value:function(e){if(null===e||"object"!==(void 0===e?"undefined":r(e))||!1 in e||-1===["http:","https:"].indexOf(e.protocol))return null;var t=e.href.substring(0,this.config.siteUrl.length),n=this._getPathname(e.href,t),i={original:e.href,protocol:e.protocol,origin:t,pathname:n,href:t+n};return this._isLinkOk(i)?i:null}},{key:"_getPathname",value:function(e,t){var n=t?e.substring(this.config.siteUrl.length):e;return n.startsWith("/")||(n="/"+n),this._shouldAddTrailingSlash(n)?n+"/":n}},{key:"_shouldAddTrailingSlash",value:function(e){return this.config.usesTrailingSlash&&!e.endsWith("/")&&!this.regex.fileExt.test(e)}},{key:"_isLinkOk",value:function(e){return null!==e&&"object"===(void 0===e?"undefined":r(e))&&(!this.prefetched.has(e.href)&&e.origin===this.config.siteUrl&&-1===e.href.indexOf("?")&&-1===e.href.indexOf("#")&&!this.regex.excludeUris.test(e.href)&&!this.regex.images.test(e.href))}}],[{key:"run",value:function(){"undefined"!=typeof RocketPreloadLinksConfig&&new n(new RocketBrowserCompatibilityChecker({capture:!0,passive:!0}),RocketPreloadLinksConfig).init()}}]),n}();t.run();
+}());
+
+
+
+</script>
+<script type="rocketlazyloadscript"
+        src='https://lotterytexts.com/wp-content/themes/astra-child/js/bootstrap.min.js?ver=1.1'
+        id='bootstrap-js'></script>
+<script type="rocketlazyloadscript"
+        src='https://lotterytexts.com/wp-content/themes/astra-child/js/shortcode.js?ver=1.1'
+        id='script-js'></script>
+<script type="rocketlazyloadscript"
+        src='https://lotterytexts.com/wp-content/plugins/elementor-pro/assets/lib/smartmenus/jquery.smartmenus.min.js?ver=1.0.1'
+        id='smartmenus-js'></script>
+<script type="rocketlazyloadscript"
+        src='https://lotterytexts.com/wp-content/plugins/elementor-pro/assets/js/webpack-pro.runtime.min.js?ver=3.7.1'
+        id='elementor-pro-webpack-runtime-js'></script>
+<script type="rocketlazyloadscript"
+        src='https://lotterytexts.com/wp-content/plugins/elementor/assets/js/webpack.runtime.min.js?ver=3.6.5'
+        id='elementor-webpack-runtime-js'></script>
+<script type="rocketlazyloadscript"
+        src='https://lotterytexts.com/wp-content/plugins/elementor/assets/js/frontend-modules.min.js?ver=3.6.5'
+        id='elementor-frontend-modules-js'></script>
+<script type="rocketlazyloadscript"
+        src='https://lotterytexts.com/wp-includes/js/dist/vendor/regenerator-runtime.min.js?ver=0.13.9'
+        id='regenerator-runtime-js'></script>
+<script type="rocketlazyloadscript"
+        src='https://lotterytexts.com/wp-includes/js/dist/vendor/wp-polyfill.min.js?ver=3.15.0'
+        id='wp-polyfill-js'></script>
+<script type="rocketlazyloadscript"
+        src='https://lotterytexts.com/wp-includes/js/dist/hooks.min.js?ver=c6d64f2cb8f5c6bb49caca37f8828ce3'
+        id='wp-hooks-js'></script>
+<script type="rocketlazyloadscript"
+        src='https://lotterytexts.com/wp-includes/js/dist/i18n.min.js?ver=ebee46757c6a411e38fd079a7ac71d94'
+        id='wp-i18n-js'></script>
+<script type="rocketlazyloadscript" id='wp-i18n-js-after'>
+wp.i18n.setLocaleData( { 'text direction\u0004ltr': [ 'ltr' ] } );
+
+
+
+</script>
+<script type="rocketlazyloadscript" id='elementor-pro-frontend-js-before'>
+var ElementorProFrontendConfig = {"ajaxurl":"https:\/\/lotterytexts.com\/wp-admin\/admin-ajax.php","nonce":"ee5ddc9c37","urls":{"assets":"https:\/\/lotterytexts.com\/wp-content\/plugins\/elementor-pro\/assets\/","rest":"https:\/\/lotterytexts.com\/wp-json\/"},"shareButtonsNetworks":{"facebook":{"title":"Facebook","has_counter":true},"twitter":{"title":"Twitter"},"linkedin":{"title":"LinkedIn","has_counter":true},"pinterest":{"title":"Pinterest","has_counter":true},"reddit":{"title":"Reddit","has_counter":true},"vk":{"title":"VK","has_counter":true},"odnoklassniki":{"title":"OK","has_counter":true},"tumblr":{"title":"Tumblr"},"digg":{"title":"Digg"},"skype":{"title":"Skype"},"stumbleupon":{"title":"StumbleUpon","has_counter":true},"mix":{"title":"Mix"},"telegram":{"title":"Telegram"},"pocket":{"title":"Pocket","has_counter":true},"xing":{"title":"XING","has_counter":true},"whatsapp":{"title":"WhatsApp"},"email":{"title":"Email"},"print":{"title":"Print"}},"facebook_sdk":{"lang":"en_US","app_id":""},"lottie":{"defaultAnimationUrl":"https:\/\/lotterytexts.com\/wp-content\/plugins\/elementor-pro\/modules\/lottie\/assets\/animations\/default.json"}};
+
+
+
+</script>
+<script type="rocketlazyloadscript"
+        src='https://lotterytexts.com/wp-content/plugins/elementor-pro/assets/js/frontend.min.js?ver=3.7.1'
+        id='elementor-pro-frontend-js'></script>
+<script type="rocketlazyloadscript"
+        src='https://lotterytexts.com/wp-content/plugins/elementor/assets/lib/waypoints/waypoints.min.js?ver=4.0.2'
+        id='elementor-waypoints-js'></script>
+<script type="rocketlazyloadscript"
+        src='https://lotterytexts.com/wp-includes/js/jquery/ui/core.min.js?ver=1.13.1'
+        id='jquery-ui-core-js'></script>
+<script type="rocketlazyloadscript"
+        src='https://lotterytexts.com/wp-content/plugins/elementor/assets/lib/swiper/swiper.min.js?ver=5.3.6'
+        id='swiper-js'></script>
+<script type="rocketlazyloadscript"
+        src='https://lotterytexts.com/wp-content/plugins/elementor/assets/lib/share-link/share-link.min.js?ver=3.6.5'
+        id='share-link-js'></script>
+<script type="rocketlazyloadscript"
+        src='https://lotterytexts.com/wp-content/plugins/elementor/assets/lib/dialog/dialog.min.js?ver=4.9.0'
+        id='elementor-dialog-js'></script>
+<script type="rocketlazyloadscript" id='elementor-frontend-js-before'>
+var elementorFrontendConfig = {"environmentMode":{"edit":false,"wpPreview":false,"isScriptDebug":false},"i18n":{"shareOnFacebook":"Share on Facebook","shareOnTwitter":"Share on Twitter","pinIt":"Pin it","download":"Download","downloadImage":"Download image","fullscreen":"Fullscreen","zoom":"Zoom","share":"Share","playVideo":"Play Video","previous":"Previous","next":"Next","close":"Close"},"is_rtl":false,"breakpoints":{"xs":0,"sm":480,"md":768,"lg":1025,"xl":1440,"xxl":1600},"responsive":{"breakpoints":{"mobile":{"label":"Mobile","value":767,"default_value":767,"direction":"max","is_enabled":true},"mobile_extra":{"label":"Mobile Extra","value":880,"default_value":880,"direction":"max","is_enabled":false},"tablet":{"label":"Tablet","value":1024,"default_value":1024,"direction":"max","is_enabled":true},"tablet_extra":{"label":"Tablet Extra","value":1200,"default_value":1200,"direction":"max","is_enabled":false},"laptop":{"label":"Laptop","value":1366,"default_value":1366,"direction":"max","is_enabled":false},"widescreen":{"label":"Widescreen","value":2400,"default_value":2400,"direction":"min","is_enabled":false}}},"version":"3.6.5","is_static":false,"experimentalFeatures":{"e_import_export":true,"e_hidden_wordpress_widgets":true,"theme_builder_v2":true,"elements-color-picker":true,"favorite-widgets":true,"admin-top-bar":true,"notes":true,"form-submissions":true,"e_scroll_snap":true},"urls":{"assets":"https:\/\/lotterytexts.com\/wp-content\/plugins\/elementor\/assets\/"},"settings":{"page":[],"editorPreferences":[]},"kit":{"body_background_background":"classic","active_breakpoints":["viewport_mobile","viewport_tablet"],"global_image_lightbox":"yes","lightbox_enable_counter":"yes","lightbox_enable_fullscreen":"yes","lightbox_enable_zoom":"yes","lightbox_enable_share":"yes","lightbox_title_src":"title","lightbox_description_src":"description"},"post":{"id":8451,"title":"Terms%20and%20Conditions","excerpt":"","featuredImage":false}};
+
+
+
+</script>
+<script type="rocketlazyloadscript"
+        src='https://lotterytexts.com/wp-content/plugins/elementor/assets/js/frontend.min.js?ver=3.6.5'
+        id='elementor-frontend-js'></script>
+<script type="rocketlazyloadscript"
+        src='https://lotterytexts.com/wp-content/plugins/elementor-pro/assets/js/preloaded-elements-handlers.min.js?ver=3.7.1'
+        id='pro-preloaded-elements-handlers-js'></script>
+<script type="rocketlazyloadscript"
+        src='https://lotterytexts.com/wp-content/plugins/elementor/assets/js/preloaded-modules.min.js?ver=3.6.5'
+        id='preloaded-modules-js'></script>
+<script type="rocketlazyloadscript"
+        src='https://lotterytexts.com/wp-content/plugins/elementor-pro/assets/lib/sticky/jquery.sticky.min.js?ver=3.7.1'
+        id='e-sticky-js'></script>
+<script type="rocketlazyloadscript">
+			/(trident|msie)/i.test(navigator.userAgent)&&document.getElementById&&window.addEventListener&&window.addEventListener("hashchange",function(){var t,e=location.hash.substring(1);/^[A-z0-9_-]+$/.test(e)&&(t=document.getElementById(e))&&(/^(?:a|select|input|button|textarea)$/i.test(t.tagName)||(t.tabIndex=-1),t.focus())},!1);
+
+
+
+</script>
+
+<!-- Shortcodes Ultimate custom CSS - start -->
+<style type="text/css">
+.su-spoiler-title {
+
+    font-size: 20px;
+}
+
+
+
+</style>
+<!-- Shortcodes Ultimate custom CSS - end -->
+<script>window.lazyLoadOptions={elements_selector:"img[data-lazy-src],.rocket-lazyload,iframe[data-lazy-src]",data_src:"lazy-src",data_srcset:"lazy-srcset",data_sizes:"lazy-sizes",class_loading:"lazyloading",class_loaded:"lazyloaded",threshold:300,callback_loaded:function(element){if(element.tagName==="IFRAME"&&element.dataset.rocketLazyload=="fitvidscompatible"){if(element.classList.contains("lazyloaded")){if(typeof window.jQuery!="undefined"){if(jQuery.fn.fitVids){jQuery(element).parent().fitVids()}}}}}};window.addEventListener('LazyLoad::Initialized',function(e){var lazyLoadInstance=e.detail.instance;if(window.MutationObserver){var observer=new MutationObserver(function(mutations){var image_count=0;var iframe_count=0;var rocketlazy_count=0;mutations.forEach(function(mutation){for(var i=0;i<mutation.addedNodes.length;i++){if(typeof mutation.addedNodes[i].getElementsByTagName!=='function'){continue}
+if(typeof mutation.addedNodes[i].getElementsByClassName!=='function'){continue}
+images=mutation.addedNodes[i].getElementsByTagName('img');is_image=mutation.addedNodes[i].tagName=="IMG";iframes=mutation.addedNodes[i].getElementsByTagName('iframe');is_iframe=mutation.addedNodes[i].tagName=="IFRAME";rocket_lazy=mutation.addedNodes[i].getElementsByClassName('rocket-lazyload');image_count+=images.length;iframe_count+=iframes.length;rocketlazy_count+=rocket_lazy.length;if(is_image){image_count+=1}
+if(is_iframe){iframe_count+=1}}});if(image_count>0||iframe_count>0||rocketlazy_count>0){lazyLoadInstance.update()}});var b=document.getElementsByTagName("body")[0];var config={childList:!0,subtree:!0};observer.observe(b,config)}},!1)
+
+
+</script>
+<script data-no-minify="1" async
+        src="https://lotterytexts.com/wp-content/plugins/wp-rocket/assets/js/lazyload/17.5/lazyload.min.js"></script>
+<script>
+    function lazyLoadThumb(e){var t='<img data-lazy-src="https://i.ytimg.com/vi/ID/hqdefault.jpg" alt="" width="480" height="360"><noscript><img src="https://i.ytimg.com/vi/ID/hqdefault.jpg" alt="" width="480" height="360"></noscript>',a='<button class="play" aria-label="play Youtube video"></button>';return t.replace("ID",e)+a}function lazyLoadYoutubeIframe(){var e=document.createElement("iframe"),t="ID?autoplay=1";t+=0===this.parentNode.dataset.query.length?'':'&'+this.parentNode.dataset.query;e.setAttribute("src",t.replace("ID",this.parentNode.dataset.src)),e.setAttribute("frameborder","0"),e.setAttribute("allowfullscreen","1"),e.setAttribute("allow", "accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"),this.parentNode.parentNode.replaceChild(e,this.parentNode)}document.addEventListener("DOMContentLoaded",function(){var e,t,p,a=document.getElementsByClassName("rll-youtube-player");for(t=0;t<a.length;t++)e=document.createElement("div"),e.setAttribute("data-id",a[t].dataset.id),e.setAttribute("data-query", a[t].dataset.query),e.setAttribute("data-src", a[t].dataset.src),e.innerHTML=lazyLoadThumb(a[t].dataset.id),a[t].appendChild(e),p=e.querySelector('.play'),p.onclick=lazyLoadYoutubeIframe});
+
+
+</script>
+<script>
+    class RocketElementorAnimation{constructor(){this.deviceMode=document.createElement("span"),this.deviceMode.id="elementor-device-mode",this.deviceMode.setAttribute("class","elementor-screen-only"),document.body.appendChild(this.deviceMode)}_detectAnimations(){let t=getComputedStyle(this.deviceMode,":after").content.replace(/"/g,"");this.animationSettingKeys=this._listAnimationSettingsKeys(t),document.querySelectorAll(".elementor-invisible[data-settings]").forEach(t=>{const e=t.getBoundingClientRect();if(e.bottom>=0&&e.top<=window.innerHeight)try{this._animateElement(t)}catch(t){}})}_animateElement(t){const e=JSON.parse(t.dataset.settings),i=e._animation_delay||e.animation_delay||0,n=e[this.animationSettingKeys.find(t=>e[t])];if("none"===n)return void t.classList.remove("elementor-invisible");t.classList.remove(n),this.currentAnimation&&t.classList.remove(this.currentAnimation),this.currentAnimation=n;let s=setTimeout(()=>{t.classList.remove("elementor-invisible"),t.classList.add("animated",n),this._removeAnimationSettings(t,e)},i);window.addEventListener("rocket-startLoading",function(){clearTimeout(s)})}_listAnimationSettingsKeys(t="mobile"){const e=[""];switch(t){case"mobile":e.unshift("_mobile");case"tablet":e.unshift("_tablet");case"desktop":e.unshift("_desktop")}const i=[];return["animation","_animation"].forEach(t=>{e.forEach(e=>{i.push(t+e)})}),i}_removeAnimationSettings(t,e){this._listAnimationSettingsKeys().forEach(t=>delete e[t]),t.dataset.settings=JSON.stringify(e)}static run(){const t=new RocketElementorAnimation;requestAnimationFrame(t._detectAnimations.bind(t))}}document.addEventListener("DOMContentLoaded",RocketElementorAnimation.run);
+
+
+</script>
+</body>
+</html>
+
+<!-- This website is like a Rocket, isn't it? Performance optimized by WP Rocket. Learn more: https://wp-rocket.me -->
